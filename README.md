@@ -48,3 +48,6 @@
 - 通知機能に関してはLINE通知を想定しています。習慣の決まった時間とポモドーロの終了通知など
 - simple_calenderを使ったカレンダー機能
 - 投稿機能、いいね機能、コメント機能はカリキュラムで作ったものを参考に作成しようと考えています。
+
+### 画面遷移図
+Figma：https://www.figma.com/file/17rbqZ5d37uVrkW0q8JQbZ/Syukan_Maker?type=design&mode=design&t=1LiRTtLKKlfjEjtu-1
