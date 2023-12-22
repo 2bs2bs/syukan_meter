@@ -62,3 +62,5 @@
 
 ### 画面遷移図
 Figma：https://www.figma.com/file/17rbqZ5d37uVrkW0q8JQbZ/Syukan_Maker?type=design&mode=design&t=1LiRTtLKKlfjEjtu-1
+
+### pullrequestを分けるための記載
