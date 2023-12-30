@@ -1,0 +1,9 @@
+<h1>Posts#index</h1>
+<%= link_to '投稿する', new_post_path %>
+
+<% if @posts.present? %>
+  <%= render @posts %>
+<% else %>
+  <div class="mb-3">投稿がありません</div>
+<% end %>
+

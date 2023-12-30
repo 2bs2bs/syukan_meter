@@ -1,0 +1,7 @@
+<%= form_with model: @post, class: "new_post" do |f| %>
+  <div class="mb-3">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control", row: "10", style: "height: 200px" %>
+  </div>
+  <%= f.submit nil, class: "btn btn-primary" %>
+<% end %>
