@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'login' => "user_sessions#create"
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
+  get 'home' => 'home#index', :as => :home
   resources :users
   root "start_page#start_page"
 
