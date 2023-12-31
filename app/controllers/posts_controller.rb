@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(:id)
+    @post = Post.find(params[:id])
   end
 
   def destroy
@@ -42,6 +42,7 @@ class PostsController < ApplicationController
     post.destroy!
     redirect_to posts_path, success: 'post is delete!'
   end
+  
   private
 
   def post_params
