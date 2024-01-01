@@ -1,4 +1,5 @@
 <%= form_for([@post, @post.comments.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div>
     <%= f.text_area :body %>
   </div>

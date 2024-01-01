@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, success: 'post sucess'
     else
-      flash.now[danger] = '文字を入れろ'
+      flash.now[danger] = 'post failed'
       render :new, status: :unprocessable_entity
     end
   end
