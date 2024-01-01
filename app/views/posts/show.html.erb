@@ -15,8 +15,11 @@
   </div>
 </div>
 
-<div class="comment">
-  <%= render 'comments/form' %>
-  """""""ここにコメントが表示される""""""
+<div class="comment_form">
+  <% if logged_in? %>
+    <%= render 'comments/form' %>
+  <% end %>
+</div>
+<div class="comments">
   <%= render @comments %>
 </div>
