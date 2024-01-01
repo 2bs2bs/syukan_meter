@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
   resources :users
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :edit, :destroy], shallow: true
+  end
   
   root "start_page#start_page"
 

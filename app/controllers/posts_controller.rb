@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @posts = Post.includes(:user) 
   end
@@ -33,7 +35,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(:id)
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   def destroy
@@ -42,6 +46,7 @@ class PostsController < ApplicationController
     post.destroy!
     redirect_to posts_path, success: 'post is delete!'
   end
+  
   private
 
   def post_params

@@ -1,2 +1,25 @@
 <h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="post">
+  <div>
+    <%= @post.user %>
+    <% if current_user.present? && current_user.own?(@post) %>
+      <%= link_to 'edit', edit_post_path(@post) %>
+      <%= link_to 'delete', post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
+    <% end %>
+  </div>
+  <div>
+    <%= @post.body %>
+  </div>
+  <div>
+    いいね！
+  </div>
+</div>
+
+<div class="comment_form">
+  <% if logged_in? %>
+    <%= render 'comments/form' %>
+  <% end %>
+</div>
+<div class="comments">
+  <%= render @comments %>
+</div>

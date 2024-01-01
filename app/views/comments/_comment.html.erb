@@ -1,0 +1,7 @@
+<div>
+  <%= comment.user %><%= comment.body %>
+  <% if current_user.present? && current_user.own?(comment) %>
+    <% link_to 'edit', edit_comment_path(@post, comment) %>
+    <%= link_to 'delete', comment_path(comment), data:{ turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' } %>
+  <% end %>
+</div>

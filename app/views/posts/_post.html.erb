@@ -1,5 +1,14 @@
-<%= post.user %>
-<%= post.body %>
+<div>
+  <div>
+    <%= post.user %>
+    <%= link_to post.body, post_path(post) %>
+    <div>
+      コメント数:<%= post.comments.count %>、いいね数
+    </div>
+  </div>
 
-<%= link_to 'edit', edit_post_path(post) %>
-<%= link_to 'delete', post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
+  <% if current_user.present? && current_user.own?(post) %>
+    <%= link_to 'edit', edit_post_path(post) %>
+    <%= link_to 'delete', post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
+  <% end %>
+</div>
