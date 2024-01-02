@@ -1,4 +1,5 @@
 <header>
   <%= link_to 'Home', home_path %>
   <%= link_to 'Logout', logout_path , data: { turbo_method: :delete } %>
+  <%= link_to 'avatar', user_path(current_user) %>
 </header>
