@@ -1,2 +1,25 @@
 <h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+
+
+<% if current_user === @user %>
+  <%= link_to 'profile_edit', edit_profile_path %>
+<% end %>
+
+<div>
+  名前:
+  <%= @user.profile.user_name %>
+</div>
+
+<% if @user.profile.introduction.present? %>
+  <div>
+    自己紹介文:
+    <%= @user.profile.introduction %>
+  </div>
+<% end %>
+
+<% if @user.profile.social_link.present? %>
+  <div>
+    URL:
+    <%= @user.profile.social_link %>
+  </div>
+<% end %>

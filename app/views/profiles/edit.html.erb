@@ -1,0 +1,27 @@
+<h1>Profiles#edit</h1>
+
+<%= form_with(model: @profile, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :social_link %>
+    <%= f.text_field :social_link %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "プロフィールを更新" %>
+  </div>
+<% end %>

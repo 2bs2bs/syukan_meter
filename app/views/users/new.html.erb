@@ -4,6 +4,12 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group">
+    <%= f.fields_for :profile do |profile_form| %>
+      <%= profile_form.label :user_name %>
+      <%= profile_form.text_field :user_name %>
+    <% end %>
+  </div>
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
@@ -15,11 +21,6 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="form-group">
-    <% f.fields_for :profile do |profile_form| %>
-    <% profile_form.text_field :name %>
-  </div>
-  <% end %>
   
   <%= f.submit "Sign up" %>
 <% end %>
