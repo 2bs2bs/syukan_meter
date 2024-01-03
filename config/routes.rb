@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :edit, :destroy], shallow: true
+    collection do
+      get :bookmarks
+    end
   end
+  resources :bookmarks, only: %i[create destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -4,7 +4,22 @@
     <%= link_to post.body, post_path(post) %>
 
     <div>
-      コメント数:<%= post.comments.count %>、いいね数
+      <div>
+        コメント数:<%= post.comments.count %>
+      </div>
+      <div class='ms-auto'>
+        <% if current_user.present? && current_user.own?(post) %>
+          いいね：<%= post.bookmarks.count %>
+        <% else %>
+          <% if current_user.bookmark?(post) %>
+            <%= render 'posts/unbookmark', { post: post } %>：
+            <%= post.bookmarks.count %>
+          <% else %>
+            <%= render 'posts/bookmark', { post: post } %>：
+            <%= post.bookmarks.count %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 

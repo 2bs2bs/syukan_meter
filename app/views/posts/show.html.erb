@@ -12,7 +12,11 @@
   </div>
   <div>
     コメント数：<%= @post.comments.count %>
-    いいね！
+    <% if current_user.bookmark?(@post) %>
+        <%= render 'unbookmark', { post: @post } %>
+      <% else %>
+        <%= render 'bookmark', { post: @post } %>
+      <% end %>：<%= @post.bookmarks.count %>
   </div>
 </div>
 
