@@ -10,16 +10,31 @@
   <%= @user.profile.user_name %>
 </div>
 
-<% if @user.profile.introduction.present? %>
-  <div>
-    自己紹介文:
-    <%= @user.profile.introduction %>
-  </div>
-<% end %>
+<div>
+  <% if @user.profile.introduction.present? %>
+    <div>
+      自己紹介文:
+      <%= @user.profile.introduction %>
+    </div>
+  <% end %>
 
-<% if @user.profile.social_link.present? %>
+  <% if @user.profile.social_link.present? %>
+    <div>
+      URL:
+      <%= @user.profile.social_link %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+いいねした投稿
   <div>
-    URL:
-    <%= @user.profile.social_link %>
+    <% if @bookmarked_posts.present? %>
+      <% @bookmarked_posts.each do |post| %>
+        <%= render 'posts/post', post: post %> <!-- この部分で部分テンプレートを使って各postを表示 -->
+      <% end %>
+    <% else %>
+      <p><%= 'no_result' %></p>
+    <% end %>
   </div>
-<% end %>
+</div>

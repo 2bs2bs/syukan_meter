@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     post.destroy!
     redirect_to posts_path, success: 'post is delete!'
   end
-  
+
   private
 
   def post_params
