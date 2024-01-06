@@ -1,7 +1,9 @@
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit "Comment" %>
-<% end %>
+<div id="comment-form">
+  <%= form_with model: comment, url: post_comments_path(post)do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div>
+      <%= f.text_area :body %>
+    </div>
+    <%= f.submit "Comment" %>
+  <% end %>
+</div>

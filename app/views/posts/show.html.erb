@@ -12,19 +12,26 @@
   </div>
   <div>
     コメント数：<%= @post.comments.count %>
-    <% if current_user.bookmark?(@post) %>
+    <% if logged_in? %>
+      <% if current_user.bookmark?(@post)  %>
         <%= render 'unbookmark', { post: @post } %>
       <% else %>
         <%= render 'bookmark', { post: @post } %>
       <% end %>：<%= @post.bookmarks.count %>
+    <% end %>
   </div>
 </div>
 
+<!-- comment_form area -->
 <div class="comment_form">
   <% if logged_in? %>
-    <%= render 'comments/form' %>
+    <%= render 'comments/form', comment: @comment, post: @post %>
   <% end %>
 </div>
-<div class="comments">
-  <%= render @comments %>
-</div>
+
+<!-- comments area -->
+<table class="comment">
+  <tbody id="table-comment">
+    <%= render @comments %>
+  </tbody>
+</table>

@@ -8,16 +8,15 @@
         コメント数:<%= post.comments.count %>
       </div>
       <div class='ms-auto'>
-        <% if current_user.present? && current_user.own?(post) %>
-          いいね：<%= post.bookmarks.count %>
-        <% else %>
+        <% if logged_in? && !current_user.own?(post) %>
           <% if current_user.bookmark?(post) %>
-            <%= render 'posts/unbookmark', { post: post } %>：
-            <%= post.bookmarks.count %>
+            <%= render 'posts/unbookmark', { post: post } %>
           <% else %>
-            <%= render 'posts/bookmark', { post: post } %>：
-            <%= post.bookmarks.count %>
+            <%= render 'posts/bookmark', { post: post } %>
           <% end %>
+          いいね：<%= post.bookmarks.count %>
+        <% elsif !logged_in? || current_user.own?(post) %>
+          いいね：<%= post.bookmarks.count %>
         <% end %>
       </div>
     </div>
