@@ -1,7 +1,9 @@
 <header>
   <%= link_to 'Home', home_path %>
+  <%= link_to 'Post', posts_path %>
   <%= link_to 'Logout', logout_path , data: { turbo_method: :delete } %>
   <%= link_to user_path(current_user) do %>
     <%= image_tag current_user.profile.avatar.url, size: '40x40' %>
   <% end %>
+
 </header>
