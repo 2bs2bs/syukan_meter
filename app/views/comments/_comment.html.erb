@@ -1,5 +1,8 @@
 <tr id="comment-<%= comment.id %>">
   <td>
+    <%= link_to user_path(comment.user) do %>
+      <%= image_tag comment.user.profile.avatar.url, size: '50x50' %>
+    <% end %>
     <%= comment.user.profile.user_name %>
   </td>
   <td>

@@ -1,6 +1,9 @@
 <div>
   <div>
-    <%= link_to post.user.profile.user_name, user_path(post.user) %>
+    <%= link_to user_path(post.user) do %>
+      <%= image_tag post.user.profile.avatar.url, size: '40x40' %>
+    <% end %>
+    <%= post.user.profile.user_name %>
     <%= link_to post.body, post_path(post) %>
 
     <div>
