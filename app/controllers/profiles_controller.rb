@@ -1,9 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :require_login
-  before_action :set_profile, only: [:edit, :update]
+  before_action :set_profile, only: %i[edit update]
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @profile.update(profile_params)
@@ -21,6 +20,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:user_name, :avater, :introduction, :social_link)
+    params.require(:profile).permit(:user_name, :avatar, :introduction, :social_link)
   end
 end
