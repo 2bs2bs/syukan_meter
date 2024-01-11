@@ -1,8 +1,7 @@
 <h1>Hi! This is Timer Page</h1>
 
-<div id="timer">
-  <span id="time">25:00</span>
-  <button id="start">Start</button>
-  <button id="pause">Pause</button>
-  <button id="reset">Reset</button>
+<div id="timer" data-controller="pomodoros">
+  <span data-pomodoros-target="time">25:00</span>
+  <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start">Start</button>
+  <button id="reset" data-action="click->pomodoros#reset">Reset</button>
 </div>
