@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => "user_sessions#create"
   delete 'logout' => 'user_sessions#destroy', :as => :logout
+  resources :password_resets, only: %i[new create edit update]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
   get 'home' => 'home#index', :as => :home
 
