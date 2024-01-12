@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :pomodoros, only: %i[index new create show]
 
+  resources :calendars, only: %i[index]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
