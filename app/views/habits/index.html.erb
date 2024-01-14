@@ -1,0 +1,19 @@
+<h1>Habits#index</h1>
+<% if @habits.present? %>
+  <%= render @habits %>
+<% else %>
+  習慣がありません！作成しましょう！
+<% end %>
+<%= link_to 'create habit!!', new_habit_path %>
+
+
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+  <%= date.strftime('%-d') %>
+  <% @habits.each do |habit| %>
+    <% if habit.start_date <= date && date <= habit.end_date %>
+      <div>
+        <%= habit_display(habit, date) %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
