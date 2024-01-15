@@ -4,3 +4,7 @@
   <%= habit.start_date %>
   <%= habit.goal %>
 </div>
+<div>
+  <%= link_to 'edit', edit_habit_path(habit) %>
+  <%= link_to 'delete', habit_path(habit), data:{ turbo_method: :delete, turbo_confirm: "この習慣「#{habit.name}」を削除しますか？" }%>
+</div>

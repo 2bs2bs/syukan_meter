@@ -1,7 +1,6 @@
 class HabitsController < ApplicationController
   def index
     @habits = current_user.habits
-    
   end
 
   def new
@@ -30,7 +29,7 @@ class HabitsController < ApplicationController
   def update
     @habit = current_user.habits.find(params[:id])
     
-    if @habit.update
+    if @habit.update(habit_params)
       redirect_to habits_path, success: 'update habit!'
     else
       flash.now[:danger] = 'faild update habit'

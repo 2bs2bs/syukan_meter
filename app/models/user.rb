@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :bookmark_posts, through: :bookmarks, source: :post
   has_many :pomodoros, dependent: :destroy
   has_many :habits, dependent: :destroy
+  has_many :progresses, through: :habits
 
   accepts_nested_attributes_for :profile
 

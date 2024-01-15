@@ -6,10 +6,12 @@ class Progress < ApplicationRecord
   # completed: boolean
 
   belongs_to :habit
+  has_one :user, through: :habits
 
   validates :date, presence: true
   validate :date_should_be_within_habit_range
   validates :completed, inclusion: { in: [true, false] }
+  validates :date, uniqueness: { scope: :habit_id }
 
   private
 
