@@ -1,3 +1,5 @@
 class CalendarsController < ApplicationController
-  def index; end
+  def index
+    @habits = current_user.habits.includes(:progresses)
+  end
 end

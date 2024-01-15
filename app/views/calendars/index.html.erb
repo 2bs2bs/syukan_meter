@@ -1,3 +1,10 @@
-<%= month_calendar do |date| %>
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
   <%= date.strftime('%-d') %>
+  <% @habits.each do |habit| %>
+    <% if habit.start_date <= date && date <= habit.end_date %>
+      <div>
+        <%= habit_display(habit, date) %>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>

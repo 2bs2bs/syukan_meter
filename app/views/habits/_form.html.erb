@@ -1,0 +1,38 @@
+<!-- app/views/habits/_form.html.erb -->
+<%= form_with(model: habit, local: true) do |form| %>
+  <% if habit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(habit.errors.count, "error") %> prohibited this habit from being saved:</h2>
+
+      <ul>
+        <% habit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :goal %>
+    <%= form.number_field :goal %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

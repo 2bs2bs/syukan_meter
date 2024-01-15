@@ -19,10 +19,14 @@ Rails.application.routes.draw do
     end
   end
   resources :bookmarks, only: %i[create destroy]
-
   resources :pomodoros, only: %i[index new create show]
-
   resources :calendars, only: %i[index]
+  resources :habits do
+    collection do
+      get :progresses
+    end
+  end
+  resources :progresses, only: %i[create destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
