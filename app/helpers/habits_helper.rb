@@ -10,9 +10,9 @@ module HabitsHelper
     elsif date.past?
       progress = habit.progresses.find_by(date: date)
       if progress&.completed?
-        "#{habit.name} (完了)"
+        "[完]#{habit.name}"
       else
-        "#{habit.name} (未完了)"
+        "[未]#{habit.name}"
       end
     else
       habit.name
