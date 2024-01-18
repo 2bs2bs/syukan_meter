@@ -1,5 +1,5 @@
 class PomodorosController < ApplicationController
   def index
-    @pomodoros = current_user.pomodoros
+    @pomodoros = pomodoro.new
   end
 end

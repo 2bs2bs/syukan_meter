@@ -7,7 +7,7 @@ class ProgressesController < ApplicationController
 
   def destroy
     @progress = current_user.progresses.find(params[:id])
+    @habit = @progress.habit
     @progress.destroy
-    redirect_to calendars_path, sucess: 'delete success!'
   end
 end

@@ -1,0 +1,4 @@
+<div id="progress_<%= habit.id %>_<%= Date.today %>">
+  <%= link_to "[未]", progresses_path(habit_id: habit.id), data: { turbo_method: :post } %>
+  <%= habit.name %>
+</div>
