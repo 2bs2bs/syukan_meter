@@ -13,9 +13,9 @@ module HabitsHelper
 
   def display_for_today(habit, progress)
     if progress.present?
-      link_to habit.name, progress_path(progress), data: { turbo_method: :delete }
+      render 'calendars/unprogress', habit: habit, progress: progress
     else
-      link_to habit.name, progresses_path(habit_id: habit.id), data: { turbo_method: :post }
+      render 'calendars/progress', habit: habit, progress: progress
     end
   end
 

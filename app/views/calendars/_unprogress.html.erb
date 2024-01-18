@@ -1,0 +1,4 @@
+<div id="unprogress_<%= habit.id %>_<%= Date.today %>">
+  <%= link_to "[完]", progress_path(current_user.progresses.find_by(habit_id: habit.id)), data: { turbo_method: :delete } %>
+  <%= habit.name %>
+</div>

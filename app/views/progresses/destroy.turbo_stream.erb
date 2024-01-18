@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "unprogress_#{@habit.id}_#{Date.today}" do %>
+  <%= render 'calendars/progress', habit: @habit, date: @date %>
+<% end %>
