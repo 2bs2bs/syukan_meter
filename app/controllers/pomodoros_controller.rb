@@ -1,5 +1,5 @@
 class PomodorosController < ApplicationController
   def index
-    @pomodoros = pomodoro.new
+    @pomodoro = Pomodoro.new
   end
 end

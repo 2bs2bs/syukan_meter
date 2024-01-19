@@ -1,5 +1,14 @@
-<header>
-  <%= link_to 'Start_page', root_path %>
-  <%= link_to 'Login', login_path %>
-  <%= link_to 'SignUp', new_user_path %>
+<header class="bg-indigo-500 text-white py-4">
+  <div class="container mx-auto flex items-center justify-between">
+
+    <!-- Start Page Link -->
+    <div>
+      <%= link_to 'Start Page', root_path, class: "text-lg font-semibold" %>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="space-x-4">
+      <%= link_to 'Login', login_path, class: "hover:underline" %>
+      <%= link_to 'Sign Up', new_user_path, class: "hover:underline" %>
+    </nav>
+  </div>
 </header>

@@ -1,33 +1,42 @@
-<div>
-  <div>
-    <%= link_to user_path(post.user) do %>
-      <%= image_tag post.user.profile.avatar.url, size: '40x40' %>
-    <% end %>
-    <%= post.user.profile.user_name %>
-    <%= link_to post.body, post_path(post) %>
-    
+<div class="bg-gray-100 p-6 my-8 rounded-md shadow-md">
 
-    <div>
-      <div>
-        コメント数:<%= post.comments.count %>
-      </div>
-      <div class='ms-auto'>
+  <div class="flex items-center mb-4">
+    <div class="flex items-center">
+      <%= link_to user_path(post.user) do %>
+        <%= image_tag post.user.profile.avatar.url, size: '40x40', class: "rounded-full" %>
+      <% end %>
+      <span class="ml-4 font-semibold text-lg text-indigo-600"><%= post.user.profile.user_name %></span>
+    </div>
+    <span class="text-gray-500 text-sm ml-auto"><%= time_ago_in_words(post.created_at) %> ago</span>
+  </div>
+
+  <p class="text-xl mb-4 text-center text-gray-800"><%= link_to post.body, post_path(post), class: "text-indigo-600 hover:underline" %></p>
+
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center">
+      <span class="text-gray-600 mr-4">Comments: <%= post.comments.count %></span>
+      <div class="flex items-center space-x-2">
         <% if logged_in? && !current_user.own?(post) %>
-          <% if current_user.bookmark?(post) %>
-            <%= render 'posts/unbookmark', { post: post } %>
-          <% else %>
-            <%= render 'posts/bookmark', { post: post } %>
-          <% end %>
-          いいね：<%= post.bookmarks.count %>
+          <div>
+            <% if current_user.bookmark?(post) %>
+              <%= render 'posts/unbookmark', { post: post } %>
+            <% else %>
+              <%= render 'posts/bookmark', { post: post } %>
+            <% end %>
+          </div>
+          <span class="text-gray-600">Likes: <%= post.bookmarks.count %></span>
         <% elsif !logged_in? || current_user.own?(post) %>
-          いいね：<%= post.bookmarks.count %>
+          <span class="text-gray-600">Likes: <%= post.bookmarks.count %></span>
         <% end %>
       </div>
     </div>
   </div>
 
   <% if current_user.present? && current_user.own?(post) %>
-    <%= link_to 'edit', edit_post_path(post) %>
-    <%= link_to 'delete', post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
+    <div class="flex items-center justify-center">
+      <%= link_to 'Edit', edit_post_path(post), class: "text-indigo-600 hover:underline mr-4" %>
+      <%= link_to 'Delete', post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-red-600 hover:underline" %>
+    </div>
   <% end %>
+
 </div>
