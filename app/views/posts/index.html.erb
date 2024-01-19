@@ -1,9 +1,11 @@
-<h1>Posts#index</h1>
-<%= link_to '投稿する', new_post_path %>
+<div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
+  <h1 class="text-2xl font-semibold mb-6">Posts#index</h1>
 
-<% if @posts.present? %>
-  <%= render @posts %>
-<% else %>
-  <div class="mb-3">投稿がありません</div>
-<% end %>
+  <%= link_to '投稿する', new_post_path, class: "mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700" %>
 
+  <% if @posts.present? %>
+    <%= render @posts %>
+  <% else %>
+    <div class="text-gray-600 mb-3">投稿がありません</div>
+  <% end %>
+</div>

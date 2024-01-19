@@ -1,9 +1,20 @@
-<header>
-  <%= link_to 'Home', home_path %>
-  <%= link_to 'Post', posts_path %>
-  <%= link_to 'Logout', logout_path , data: { turbo_method: :delete } %>
-  <%= link_to user_path(current_user) do %>
-    <%= image_tag current_user.profile.avatar.url, size: '40x40' %>
-  <% end %>
+<header class="bg-indigo-500 text-white py-4">
+  <div class="container mx-auto flex items-center justify-between">
 
+  <!-- Home Link -->
+  <div>
+    <%= link_to 'Home', home_path, class: "text-lg font-semibold" %>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="space-x-4">
+    <%= link_to 'Post', posts_path, class: "hover:underline" %>
+    <%= link_to 'Logout', logout_path, data: { turbo_method: :delete }, class: "hover:underline" %>
+    <%= link_to user_path(current_user), class: "flex items-center hover:underline" do %>
+      <%= image_tag current_user.profile.avatar.url, size: '40x40', class: "rounded-full mr-2" %>
+      <%= current_user.profile.user_name %>
+    <% end %>
+  </nav>
+
+  </div>
 </header>
