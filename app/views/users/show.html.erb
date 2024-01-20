@@ -1,42 +1,40 @@
-<h1>User#show</h1>
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-semibold mb-4">User Profile</h1>
 
-
-<% if current_user === @user %>
-  <%= link_to 'profile_edit', edit_profile_path %>
-<% end %>
-
-<div>
-  <%= image_tag @user.profile.avatar.url, size: '50x50' %>
-</div>
-<div>
-  名前:
-  <%= @user.profile.user_name %>
-</div>
-<div>
-  <% if @user.profile.introduction.present? %>
-    <div>
-      自己紹介文:
-      <%= @user.profile.introduction %>
-    </div>
+  <% if current_user === @user %>
+    <%= link_to 'Edit Profile', edit_profile_path, class: "text-blue-500 hover:underline mb-4" %>
   <% end %>
 
-  <% if @user.profile.social_link.present? %>
+  <div class="flex items-center mb-4">
+    <%= image_tag @user.profile.avatar.url, size: '50x50', class: "rounded-full mr-4" %>
     <div>
-      URL:
-      <%= @user.profile.social_link %>
-    </div>
-  <% end %>
-</div>
-
-<div>
-いいねした投稿
-  <div>
-    <% if @bookmarked_posts.present? %>
-      <% @bookmarked_posts.each do |post| %>
-        <%= render 'posts/post', post: post %> <!-- この部分で部分テンプレートを使って各postを表示 -->
+      <div class="text-lg font-semibold">
+        名前: <%= @user.profile.user_name %>
+      </div>
+      <% if @user.profile.introduction.present? %>
+        <div class="mt-2">
+          自己紹介文: <%= @user.profile.introduction %>
+        </div>
       <% end %>
-    <% else %>
-      <p><%= 'no_result' %></p>
-    <% end %>
+
+      <% if @user.profile.social_link.present? %>
+        <div class="mt-2">
+          URL: <%= @user.profile.social_link %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="text-xl font-semibold mb-2">いいねした投稿</h2>
+    <div>
+      <% if @bookmarked_posts.present? %>
+        <% @bookmarked_posts.each do |post| %>
+          <%= render 'posts/post', post: post %> <!-- この部分で部分テンプレートを使って各postを表示 -->
+        <% end %>
+      <% else %>
+        <p class="text-gray-500">いいねした投稿はありません。</p>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,7 +1,15 @@
-<h1>Habits#index</h1>
-<% if @habits.present? %>
-  <%= render @habits %>
-<% else %>
-  習慣がありません！作成しましょう！
-<% end %>
-<%= link_to 'create habit!!', new_habit_path %>
+<!-- app/views/habits/index.html.erb -->
+
+<div class="container mx-auto my-8">
+  <h1 class="text-3xl font-semibold mb-4">Habits#index</h1>
+  
+  <%= link_to 'Create Habit!!', new_habit_path, class: "mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700" %>
+
+
+  <% if @habits.present? %>
+    <%= render @habits %>
+  <% else %>
+    <p class="text-gray-500 mb-4">習慣がありません！作成しましょう！</p>
+  <% end %>
+
+</div>
