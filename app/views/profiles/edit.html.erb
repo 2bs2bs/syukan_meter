@@ -1,27 +1,31 @@
-<h1>Profiles#edit</h1>
+<div class="container mx-auto mt-8 p-8 bg-white max-w-md rounded-lg shadow-md">
+  <div class="max-w-md p-8 bg-white rounded-md">
+    <h1 class="text-3xl font-semibold mb-6 text-center">Edit Profile</h1>
 
-<%= form_with(model: @profile, local: true) do |f| %>
-  <div class="field">
-    <%= f.label :user_name %>
-    <%= f.text_field :user_name %>
-  </div>
+    <%= form_with(model: @profile, local: true, class: "text-left") do |f| %>
+      <div class="mb-4">
+        <%= f.label :user_name, class: "block text-sm font-medium text-gray-600" %>
+        <%= f.text_field :user_name, class: "mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-indigo-500 transition duration-150 ease-in-out" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :avatar, class: "block text-sm font-medium text-gray-600" %>
+        <%= f.file_field :avatar, class: "mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-indigo-500 transition duration-150 ease-in-out" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :introduction %>
-    <%= f.text_area :introduction %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :introduction, class: "block text-sm font-medium text-gray-600" %>
+        <%= f.text_area :introduction, class: "mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-indigo-500 transition duration-150 ease-in-out" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :social_link %>
-    <%= f.text_field :social_link %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :social_link, class: "block text-sm font-medium text-gray-600" %>
+        <%= f.text_field :social_link, class: "mt-1 p-2 block w-full border rounded-md focus:outline-none focus:border-indigo-500 transition duration-150 ease-in-out" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "プロフィールを更新" %>
+      <div class="flex items-center justify-end">
+        <%= f.submit "Update Profile", class: "px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

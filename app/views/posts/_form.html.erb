@@ -1,8 +1,14 @@
-<%= form_with model: @post, class: "new_post" do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="mb-3">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control", row: "10", style: "height: 200px" %>
-  </div>
-  <%= f.submit nil, class: "btn btn-primary" %>
-<% end %>
+<div class="w-full p-8 bg-white rounded-md shadow-md">
+  <%= form_with model: post, class: "new_post" do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="mb-6">
+      <%= f.label :body, class: "text-sm font-medium text-gray-600" %>
+      <%= f.text_area :body, class: "mt-1 p-4 block w-full border rounded-md focus:outline-none focus:border-indigo-500 transition duration-150 ease-in-out", rows: "5" %>
+    </div>
+
+    <div class="flex justify-center">
+      <%= f.submit "Post", class: "px-6 py-3 bg-indigo-500 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+  <% end %>
+</div>

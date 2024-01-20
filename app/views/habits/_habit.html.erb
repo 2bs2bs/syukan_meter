@@ -1,10 +1,16 @@
-<div>
-  <%= habit.name %>
-  <%= habit.description %>
-  <%= habit.start_date %>
-  <%= habit.goal %>
+<!-- app/views/habits/_habit.html.erb -->
+
+<div class="bg-white rounded-lg p-4 mb-4 shadow-md flex items-center">
+  <div class="w-full text-center">
+    <h2 class="text-xl font-semibold mb-2"><%= habit.name %></h2>
+    <p class="text-gray-600 mb-2"><%= habit.description %></p>
+    <p class="text-gray-500 mb-2"><strong>Start Date:</strong> <%= habit.start_date %></p>
+    <p class="text-gray-500 mb-4"><strong>Goal:</strong> <%= habit.goal %></p>
+  </div>
+
+  <div class="flex items-center">
+    <%= link_to 'Edit', edit_habit_path(habit), class: "mb-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700" %>
+    <%= link_to 'Delete', habit_path(habit), method: :delete, data: { turbo_confirm: "この習慣「#{habit.name}」を削除しますか？" }, class: "text-red-500 hover:underline ml-4" %>
+  </div>
 </div>
-<div>
-  <%= link_to 'edit', edit_habit_path(habit) %>
-  <%= link_to 'delete', habit_path(habit), data:{ turbo_method: :delete, turbo_confirm: "この習慣「#{habit.name}」を削除しますか？" }%>
-</div>
+
