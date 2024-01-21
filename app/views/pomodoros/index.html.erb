@@ -1,7 +1,13 @@
-<h1>Hi! This is Timer Page</h1>
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
 
-<div id="timer" data-controller="pomodoros">
-  <span data-pomodoros-target="time">25:00</span>
-  <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start">Start</button>
-  <button id="reset" data-action="click->pomodoros#reset">Reset</button>
+  <h1 class="text-3xl font-semibold mb-6">Hi! This is Timer Page</h1>
+
+  <div id="timer" data-controller="pomodoros" class="bg-white p-8 rounded-lg shadow-md text-center mb-8">
+    <span data-pomodoros-target="time" class="text-4xl font-bold mb-4">25:00</span>
+    <div class="flex flex-col items-center space-y-4">
+      <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start" class="bg-blue-500 text-gray px-8 py-3 rounded-full hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Start</button>
+      <button id="reset" data-action="click->pomodoros#reset" class="bg-gray-500 text-gray px-8 py-3 rounded-full hover:bg-gray-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
+    </div>
+  </div>
+
 </div>

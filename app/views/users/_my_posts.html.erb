@@ -1,0 +1,13 @@
+<div id="myPostsContent" class="hidden">
+  <h2 class="text-xl font-semibold mb-2">自分の投稿</h2>
+
+  <div>
+    <% if @user.posts.present? %>
+      <% @user.posts.each do |post| %>
+        <%= render 'posts/post', post: post %>
+      <% end %>
+    <% else %>
+      <p class="text-gray-500">自分の投稿はありません。</p>
+    <% end %>
+  </div>
+</div>
