@@ -10,7 +10,7 @@
 
   <div class="flex items-center">
     <%= link_to 'Edit', edit_habit_path(habit), class: "mb-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700" %>
-    <%= link_to 'Delete', habit_path(habit), method: :delete, data: { turbo_confirm: "この習慣「#{habit.name}」を削除しますか？" }, class: "text-red-500 hover:underline ml-4" %>
+    <%= link_to 'Delete', habit_path(habit), method: :delete, data: { turbo_confirm: "この習慣「#{habit.name}」を削除しますか？" }, class: "mb-4 bg-red-500 text-white-500 py-2 py-4 rounded hover:bg-red-700 ml-4" %>
   </div>
 </div>
 

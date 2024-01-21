@@ -1,0 +1,12 @@
+<div>
+  <h2 class="text-xl font-semibold mb-2">いいねした投稿</h2>
+  <div>
+    <% if @bookmarked_posts.present? %>
+      <% @bookmarked_posts.each do |post| %>
+        <%= render 'posts/post', post: post %> <!-- この部分で部分テンプレートを使って各postを表示 -->
+      <% end %>
+    <% else %>
+      <p class="text-gray-500">いいねした投稿はありません。</p>
+    <% end %>
+  </div>
+</div>

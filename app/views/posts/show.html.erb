@@ -1,37 +1,64 @@
-<h1>Posts#show</h1>
-<div class="post">
-  <div>
-    <%= link_to @post.user.profile.user_name, user_path(@post.user) %>
-    <% if current_user.present? && current_user.own?(@post) %>
-      <%= link_to 'edit', edit_post_path(@post) %>
-      <%= link_to 'delete', post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } %>
-    <% end %>
+<div class="container mx-auto my-8">
+
+  <h1 class="text-3xl font-semibold mb-6">Posts#show</h1>
+
+  <!-- Post Section -->
+  <div class="bg-white p-6 rounded-md shadow-md mb-8 text-center">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <span class="font-bold">
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag current_user.profile.avatar.url, class: "rounded-full h-8 w-8" %>
+        <% end %>
+        </span>
+        <% if current_user.present? && current_user.own?(@post) %>
+          <span class="ml-4">
+            <%= link_to 'Edit', edit_post_path(@post), class: "text-blue-500 hover:underline" %>
+          </span>
+          <span class="ml-4">
+            <%= link_to 'Delete', post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-red-500 hover:underline" %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <%= @post.body %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="text-gray-500">
+        Comments: <%= @post.comments.count %>
+      </div>
+      <% if logged_in? %>
+        <div class="flex items-center space-x-4">
+          <% if current_user.bookmark?(@post) %>
+            <%= render 'unbookmark', post: @post %>
+          <% else %>
+            <%= render 'bookmark', post: @post %>
+          <% end %>
+          <span class="text-gray-500">Bookmarks: <%= @post.bookmarks.count %></span>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= @post.body %>
-  </div>
-  <div>
-    コメント数：<%= @post.comments.count %>
+
+  <hr class="my-8 border-t border-gray-300">
+
+  <!-- Comment Section -->
+  <div class="bg-white p-6 rounded-md shadow-md mb-8 text-center">
     <% if logged_in? %>
-      <% if current_user.bookmark?(@post)  %>
-        <%= render 'unbookmark', { post: @post } %>
-      <% else %>
-        <%= render 'bookmark', { post: @post } %>
-      <% end %>：<%= @post.bookmarks.count %>
+      <%= render 'comments/form', comment: @comment, post: @post %>
     <% end %>
   </div>
-</div>
 
-<!-- comment_form area -->
-<div class="comment_form">
-  <% if logged_in? %>
-    <%= render 'comments/form', comment: @comment, post: @post %>
-  <% end %>
-</div>
+  <!-- Comments List Section -->
+  <div class="bg-white p-6 rounded-md shadow-md">
+    <table class="w-full">
+      <tbody id="table-comment">
+        <%= render @comments %>
+      </tbody>
+    </table>
+  </div>
 
-<!-- comments area -->
-<table class="comment">
-  <tbody id="table-comment">
-    <%= render @comments %>
-  </tbody>
-</table>
+</div>

@@ -1,17 +1,19 @@
-<tr id="comment-<%= comment.id %>">
-  <td>
+<tr id="comment-<%= comment.id %>" class="border-b border-gray-300 hover:bg-gray-100 transition-all">
+  <td class="py-4 flex items-center">
     <%= link_to user_path(comment.user) do %>
-      <%= image_tag comment.user.profile.avatar.url, size: '50x50' %>
+      <%= image_tag comment.user.profile.avatar.url, size: '50x50', class: 'rounded-full mr-2' %>
     <% end %>
-    <%= comment.user.profile.user_name %>
+    <span class="font-semibold text-gray-700"><%= comment.user.profile.user_name %></span>
   </td>
-  <td>
+  <td class="py-4 text-center">
     <%= comment.body %>
   </td>
   <% if current_user.present? && current_user.own?(comment) %>
-    <td>
-      <% link_to 'edit', edit_comment_path(comment) %>
-      <%= link_to 'delete', comment_path(comment), data:{ turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' } %>
+    <td class="py-4">
+      <div class="text-center">
+        <%= link_to 'edit', edit_comment_path(comment), class: 'bg-indigo-500 hover:underline mr-2' %>
+        <%= link_to 'delete', comment_path(comment), data: { turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' }, class: 'text-red-500 hover:underline' %>
+      </div>
     </td>
   <% end %>
 </tr>
