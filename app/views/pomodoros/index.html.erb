@@ -1,12 +1,12 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+<div class="flex flex-col items-center justify-center bg-gray-100">
 
   <h1 class="text-3xl font-semibold mb-6">Hi! This is Timer Page</h1>
 
-  <div id="timer" data-controller="pomodoros" class="bg-white p-8 rounded-lg shadow-md text-center mb-8">
+  <div id="timer" data-controller="pomodoros" class="bg-white p-8 rounded-lg shadow-md text-center mb-8 container mx-auto max-w-md">
     <span data-pomodoros-target="time" class="text-4xl font-bold mb-4">25:00</span>
-    <div class="flex flex-col items-center space-y-4">
-      <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start" class="bg-blue-500 text-gray px-8 py-3 rounded-full hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Start</button>
-      <button id="reset" data-action="click->pomodoros#reset" class="bg-gray-500 text-gray px-8 py-3 rounded-full hover:bg-gray-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
+    <div class="flex items-center space-x-4">
+      <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start" class="flex-grow bg-blue-500 text-white px-10 py-3 rounded-full hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Start</button>
+      <button id="reset" data-action="click->pomodoros#reset" class="flex-grow bg-red-500 text-white px-10 py-3 rounded-full hover:bg-red-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">Reset</button>
     </div>
   </div>
 

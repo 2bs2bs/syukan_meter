@@ -5,14 +5,17 @@
   <!-- Post Section -->
   <div class="bg-white p-6 rounded-md shadow-md mb-8 text-center">
     <div class="flex items-center justify-between mb-4">
-      <div>
+      <div class="flex items-center">
         <span class="font-bold">
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.profile.avatar.url, class: "rounded-full h-8 w-8" %>
-        <% end %>
+          <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.user.profile.avatar.url, class: "rounded-full h-8 w-8" %>
+          <% end %>
+        </span>
+        <span class="ml-2">
+          <%= @post.user.profile.user_name %>
         </span>
         <% if current_user.present? && current_user.own?(@post) %>
-          <span class="ml-4">
+          <span class="flex ml-4">
             <%= link_to 'Edit', edit_post_path(@post), class: "text-blue-500 hover:underline" %>
           </span>
           <span class="ml-4">
@@ -53,7 +56,9 @@
   </div>
 
   <!-- Comments List Section -->
-  <div class="bg-white p-6 rounded-md shadow-md">
+  <!-- コメントある無しでフォームの表示非表示を行う。-->
+
+  <div class="bg-white p-6 rounded-md shadow-md mt-8">
     <table class="w-full">
       <tbody id="table-comment">
         <%= render @comments %>
