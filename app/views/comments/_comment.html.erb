@@ -2,18 +2,19 @@
   <td class="py-4 flex items-center">
     <%= link_to user_path(comment.user) do %>
       <%= image_tag comment.user.profile.avatar.url, size: '50x50', class: 'rounded-full mr-2' %>
+      <span class="font-semibold text-gray-700"><%= comment.user.profile.user_name %></span>
     <% end %>
-    <span class="font-semibold text-gray-700"><%= comment.user.profile.user_name %></span>
   </td>
-  <td class="py-4 text-center">
+  <td class="py-4">
     <%= comment.body %>
   </td>
   <% if current_user.present? && current_user.own?(comment) %>
-    <td class="py-4">
-      <div class="text-center">
-        <%= link_to 'edit', edit_comment_path(comment), class: 'bg-indigo-500 hover:underline mr-2' %>
-        <%= link_to 'delete', comment_path(comment), data: { turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' }, class: 'text-red-500 hover:underline' %>
-      </div>
+    <td class="py-4 text-center">
+      <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: 'コメントを削除しますか？' }, class: 'text-red-500 hover:underline' do %>
+        <svg class="w-6 h-6 text-gray-800 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+        </svg>
+      <% end %>
     </td>
   <% end %>
 </tr>
