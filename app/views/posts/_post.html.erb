@@ -12,6 +12,7 @@
 
   <p class="text-xl mb-4 text-center text-gray-800"><%= link_to post.body, post_path(post), class: "text-indigo-600 hover:underline" %></p>
 
+  <!-- current_userの場合、edit_linkとdelete_link -->
   <% if current_user.present? && current_user.own?(post) %>
     <div class="flex items-center justify-center">
       <%= link_to edit_post_path(post) do %>
@@ -27,6 +28,7 @@
     </div>
   <% end %>
 
+  <!-- bookmark -->
   <div class="flex items-center justify-between mb-4">
     <div class="flex items-center">
       <span class="text-gray-600 mr-4">Comments: <%= post.comments_count %></span>

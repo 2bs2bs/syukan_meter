@@ -5,15 +5,19 @@
   <!-- Post Section -->
   <%= render 'post', post: @post %>
 
-  <hr class="my-8 border-t border-gray-300">
-
-  <!-- Comment Section -->
-  <div class="bg-gray-100 p-6 rounded-md shadow-md mb-8 text-center">
-    <% if logged_in? %>
-      <%= render 'comments/form', comment: @comment, post: @post %>
-    <% end %>
+  <div class="flex justify-center mb-4">
+    <button id="open-comment-modal-button" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">コメントする</button>
   </div>
 
+  <!-- Comment Section Modal -->
+  <% if logged_in? %>
+    <div class="modal hidden" id="new-comment-modal">
+        <%= render 'comments/form', comment: @comment, post: @post %>
+    </div>
+  <% end %>
+
+  <hr class="my-8 border-t border-gray-300">
+  
   <!-- Comments List Section -->
   <!-- コメントある無しでフォームの表示非表示を行う。-->
   <div class="bg-gray-100 p-6 rounded-md shadow-md mt-6">
@@ -24,4 +28,15 @@
     </table>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const openModalButton = document.getElementById('open-comment-modal-button');
+      const modal = document.getElementById('new-comment-modal');
+
+      openModalButton.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        openModalButton.classList.add('hidden');
+      });
+    });
+  </script>
 </div>
