@@ -1,7 +1,7 @@
 @import "simple_calendar";
 
 .simple-calendar {
-  // .day {}
+  // .day { background-color: white; }
 
   // .wday-0 {}
   // .wday-1 {}
@@ -11,7 +11,7 @@
   // .wday-5 {}
   // .wday-6 {}
 
-  // .today { }
+  // .today { background-color: rgb(247, 247, 175); }
   // .past {}
   // .future {}
 
@@ -22,4 +22,5 @@
   // .current-month {}
 
   .has-events { background-color: greenyellow;}
+  .calendar-heading { margin-bottom: 10px; }
 }

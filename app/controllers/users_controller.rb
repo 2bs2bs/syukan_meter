@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @bookmarked_posts = @user.bookmark_posts.includes(:user).order(created_at: :desc)
+    @user = User.includes(:profile, posts: :bookmarks).find(params[:id])
+    @bookmarked_posts = @user.bookmark_posts.includes(:bookmarks, user: :profile)
   end
 
   def destroy

@@ -5,7 +5,7 @@
       <%= link_to user_path(post.user) do %>
         <%= image_tag post.user.profile.avatar.url, size: '40x40', class: "rounded-full" %>
       <% end %>
-      <span class="ml-4 font-semibold text-lg text-indigo-600"><%= post.user.profile.user_name %></span>
+      <span class="ml-4 font-semibold text-lg text-gray-500"><%= post.user.profile.user_name %></span>
     </div>
     <span class="text-gray-500 text-sm ml-auto"><%= time_ago_in_words(post.created_at) %> ago</span>
   </div>
@@ -29,7 +29,7 @@
 
   <div class="flex items-center justify-between mb-4">
     <div class="flex items-center">
-      <span class="text-gray-600 mr-4">Comments: <%= post.comments.count %></span>
+      <span class="text-gray-600 mr-4">Comments: <%= post.comments_count %></span>
       <div class="flex items-center space-x-2">
         <% if logged_in? && !current_user.own?(post) %>
           <div>
@@ -40,7 +40,7 @@
             <% end %>
           </div>
         <% elsif !logged_in? || current_user.own?(post) %>
-          <span class="text-gray-600">Likes: <%= post.bookmarks.count %></span>
+          <span class="text-gray-600">Likes: <%= post.bookmarks_count %></span>
         <% end %>
       </div>
     </div>

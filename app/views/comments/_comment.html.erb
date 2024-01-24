@@ -2,8 +2,9 @@
   <td class="py-4 flex items-center">
     <%= link_to user_path(comment.user) do %>
       <%= image_tag comment.user.profile.avatar.url, size: '50x50', class: 'rounded-full mr-2' %>
-      <span class="font-semibold text-gray-700"><%= comment.user.profile.user_name %></span>
     <% end %>
+    <!-- user_name を image の横に移動 -->
+    <span class="font-semibold text-gray-700"><%= comment.user.profile.user_name %></span>
   </td>
   <td class="py-4">
     <%= comment.body %>
