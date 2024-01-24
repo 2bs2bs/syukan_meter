@@ -1,27 +1,25 @@
 <div class=""container mx-auto mt-8 p-8 bg-white rounded-lg shadow flex justify-center items-center"">
   <h1 class="text-3xl font-semibold mb-4">User Profile</h1>
+  
+  <div class="bg-white p-6 rounded-md shadow-md text-center">
+    <% if current_user === @user %>
+      <%= link_to 'Edit Profile', edit_profile_path, class: "text-blue-500 hover:underline mb-4 block" %>
+    <% end %>
 
-  <% if current_user === @user %>
-    <%= link_to 'Edit Profile', edit_profile_path, class: "text-blue-500 hover:underline mb-4" %>
-  <% end %>
+    <div class="flex items-center mb-4 justify-center">
+      <%= image_tag @user.profile.avatar.url, size: '100x100', class: "rounded-full mb-4" %>
+    </div>
 
-  <div class="flex items-center mb-4">
-    <%= image_tag @user.profile.avatar.url, size: '50x50', class: "rounded-full mr-4" %>
-    <div>
-      <div class="text-lg font-semibold">
-        名前: <%= @user.profile.user_name %>
-      </div>
-      <% if @user.profile.introduction.present? %>
-        <div class="mt-2">
-          自己紹介文: <%= @user.profile.introduction %>
-        </div>
-      <% end %>
+    <div class="text-lg font-semibold">
+      名前: <%= @user.profile.user_name %>
+    </div>
 
-      <% if @user.profile.social_link.present? %>
-        <div class="mt-2">
-          URL: <%= @user.profile.social_link %>
-        </div>
-      <% end %>
+    <div class="mt-2">
+      自己紹介文: <%= @user.profile.introduction.presence || '未設定' %>
+    </div>
+
+    <div class="mt-2">
+      URL: <%= @user.profile.social_link.presence || '未設定' %>
     </div>
   </div>
 
@@ -32,38 +30,38 @@
 
       <!-- "いいねした投稿" タブ -->
       <button id="favoritePostsTab" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md">いいねした投稿</button>
+    </div>
 
-      <!-- タブに対応する部分テンプレートを呼び出す -->
-      <div id="tabContent" class="mt-4">
-        <div id="myPostsContent">
-          <%= render 'my_posts' %>
-        </div>
-        <div id="favoritePostsContent" class="hidden">
-          <%= render 'favorite_posts' %>
-        </div>
+    <!-- タブに対応する部分テンプレートを呼び出す -->
+    <div id="tabContent" class="mt-4">
+      <div id="myPostsContent">
+        <%= render 'my_posts' %>
+      </div>
+      <div id="favoritePostsContent" class="hidden">
+        <%= render 'favorite_posts' %>
       </div>
     </div>
   </div>
 
   <!-- JavaScriptコード -->
   <script>
-  document.addEventListener('turbo:load', () => {
-    const myPostsTab = document.getElementById('myPostsTab');
-    const favoritePostsTab = document.getElementById('favoritePostsTab');
-    const myPostsContent = document.getElementById('myPostsContent');
-    const favoritePostsContent = document.getElementById('favoritePostsContent');
+    document.addEventListener('turbo:load', () => {
+      const myPostsTab = document.getElementById('myPostsTab');
+      const favoritePostsTab = document.getElementById('favoritePostsTab');
+      const myPostsContent = document.getElementById('myPostsContent');
+      const favoritePostsContent = document.getElementById('favoritePostsContent');
 
-    myPostsTab.addEventListener('click', () => {
-      console.log('myPostsTab clicked');
-      myPostsContent.classList.remove('hidden');
-      favoritePostsContent.classList.add('hidden');
-    });
+      myPostsTab.addEventListener('click', () => {
+        console.log('myPostsTab clicked');
+        myPostsContent.classList.remove('hidden');
+        favoritePostsContent.classList.add('hidden');
+      });
 
-    favoritePostsTab.addEventListener('click', () => {
-      console.log('favoritePostsTab clicked');
-      myPostsContent.classList.add('hidden');
-      favoritePostsContent.classList.remove('hidden');
+      favoritePostsTab.addEventListener('click', () => {
+        console.log('favoritePostsTab clicked');
+        myPostsContent.classList.add('hidden');
+        favoritePostsContent.classList.remove('hidden');
+      });
     });
-  });
-</script>
+  </script>
 </div>
