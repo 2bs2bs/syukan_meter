@@ -1,9 +1,14 @@
-<div id="comment-form">
-  <%= form_with model: comment, url: post_comments_path(post)do |f| %>
+<div id="comment-form" class="p-6 rounded-md shadow-md bg-gray-100">
+  <%= form_with model: comment, url: post_comments_path(post), class: "space-y-4" do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div>
-      <%= f.text_area :body %>
+
+    <div class="text-center">
+      <%= f.label :body, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_area :body, rows: 4, class: "form-input mt-1 block w-full" %>
     </div>
-    <%= f.submit "Comment" %>
+
+    <div class="text-center">
+      <%= f.submit "Comment", class: "bg-indigo-500 text-white mt-2 py-2 px-4 rounded hover:bg-indigo-700" %>
+    </div>
   <% end %>
 </div>
