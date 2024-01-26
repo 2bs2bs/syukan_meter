@@ -1,8 +1,12 @@
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
-  <%= date.strftime('%-d') %>
+<%= content_for(:title, t('.title')) %>
+
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date, header: true, class: "grid grid-cols-7 gap-4") do |date| %>
+  <div class="flex items-center justify-center h-8 w-8 rounded-full">
+    <%= date.strftime('%-d') %>
+  </div>
   <% @habits.each do |habit| %>
     <% if habit.start_date <= date && date <= habit.end_date %>
-      <div>
+      <div class="mt-2 p-2 rounded-md bg-blue-200 text-blue-800">
         <%= habit_display(habit, date) %>
       </div>
     <% end %>

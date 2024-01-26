@@ -1,0 +1,57 @@
+ja:
+  helpers:
+    submit:
+      create: 登録する
+      submit: 保存
+      update: 更新
+      comment: コメントする
+    label:
+      email: メールアドレス
+      password: パスワード
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      to_register_page: 登録ページへ
+      password_forget: パスワードをお忘れの方はこちら
+  users:
+    new:
+      title: ユーザー登録
+      to_login_page: ログインページへ
+    show:
+      title: ユーザーページ
+      edit_profile: プロフィール編集
+  profiles:
+    edit: 
+      title: プロフィール編集
+  home:
+    index:
+      title: Home
+      post: 投稿
+      timer: ポモドーロ
+      calendar: カレンダー
+      habit: 習慣
+  posts:
+    index:
+      title: 投稿一覧
+      post: 投稿する
+    show:
+      title: 投稿詳細
+  habits:
+    index:
+      title: 習慣一覧
+  pomodoros:
+    index:
+      title: タイマーページ
+      start: 開始
+      reset: リセット
+      pause: 一時停止
+  calendars:
+    index:
+      title: カレンダー
+  header:
+    top: TOP
+    login: ログイン
+    logout: ログアウト
+    sign_up: ユーザー登録
+    post: 投稿
