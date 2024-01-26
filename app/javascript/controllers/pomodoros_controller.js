@@ -48,10 +48,10 @@ export default class extends Controller {
   toggleStartPause() {
     if (!this.timerId) {
       this.start();
-      this.startTarget.textContent = 'Pause';
+      this.startTarget.textContent = '一時停止';
     } else {
       this.pause();
-      this.startTarget.textContent = 'Start';
+      this.startTarget.textContent = '再開';
     }
   }
 }

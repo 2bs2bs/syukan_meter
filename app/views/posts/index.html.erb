@@ -1,8 +1,10 @@
+<%= content_for(:title, t('.title')) %>
+
 <div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
-  <h1 class="text-2xl font-semibold mb-6">Posts#index</h1>
+  <h1 class="text-2xl font-semibold mb-6"><%= t('.title') %></h1>
 
   <div class="flex justify-center mb-4">
-    <button id="open-modal-button" class="mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">投稿する</button>
+    <button id="open-modal-button" class="mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700"><%= t('.post') %></button>
   </div>
   
   <div class="modal hidden" id="new-post-modal">

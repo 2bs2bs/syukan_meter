@@ -1,5 +1,11 @@
 module ApplicationHelper
 
+  def page_title(page_title = '')
+    base_title = 'Syukan meter'
+
+    page_title.empty? ? base_title : page_title + " | " + base_title
+  end
+
   def flash_message_classes(message_type)
     case message_type
     when 'success'
