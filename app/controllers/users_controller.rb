@@ -9,9 +9,9 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
-      redirect_to home_path, notice: "user_create & login success"
+      redirect_to home_path, success: t('users.create.success')
     else
-      flash.now[:danger] = 'user_create failed'
+      flash.now[:danger] = t('users.create.failure')
       render :new, status: :unprocessable_entity
     end
   end
@@ -19,9 +19,6 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(:profile, posts: :bookmarks).find(params[:id])
     @bookmarked_posts = @user.bookmark_posts.includes(:bookmarks, user: :profile)
-  end
-
-  def destroy
   end
 
   private

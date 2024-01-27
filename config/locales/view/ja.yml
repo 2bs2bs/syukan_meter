@@ -14,10 +14,18 @@ ja:
       login: ログイン
       to_register_page: 登録ページへ
       password_forget: パスワードをお忘れの方はこちら
+    create:
+      success: ログインしました！良い習慣を！
+      failure: ログイン失敗しました
+    destroy:
+      success: ログアウトしました！
   users:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+    create:
+      success: 登録とログインしました！良い習慣を！
+      failure: ユーザー登録に失敗しました
     show:
       title: ユーザーページ
       edit_profile: プロフィール編集
@@ -35,11 +43,27 @@ ja:
     index:
       title: 投稿一覧
       post: 投稿する
+    create:
+      success: 投稿しました！
+      failure: 投稿に失敗しました
+    update:
+      success: 投稿を更新しました！
+      failure: 投稿を更新できませんでした
+    destroy:
+      success: 投稿を削除しました
     show:
       title: 投稿詳細
   habits:
     index:
       title: 習慣一覧
+    create:
+      success: 習慣を作成しました！一緒にがんばりましょう！
+      failure: 習慣作成に失敗しました
+    update:
+      success: 習慣をアップデートしました
+      failure: 習慣のアップデートに失敗しました
+    destroy:
+      success: 習慣を削除しました
   pomodoros:
     index:
       title: タイマーページ
@@ -57,4 +81,3 @@ ja:
     post: 投稿
     pomodoro: タイマー
     habit: 習慣
-    

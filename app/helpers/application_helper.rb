@@ -9,11 +9,11 @@ module ApplicationHelper
   def flash_message_classes(message_type)
     case message_type
     when 'success'
-      'bg-green-500 text-black'
-    when 'alert'
-      'bg-red-500 text-black'
+      'text-green-800 bg-green-50 dark:text-green-400'
+    when 'danger'
+      'text-red-800  bg-red-50 dark:text-red-400'
     else
-      'bg-blue-500 text-black'
+      'text-blue-800 bg-blue-50 dark:text-blue-400'
     end
   end
 end

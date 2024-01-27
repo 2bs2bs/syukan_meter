@@ -13,10 +13,9 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.build(habit_params)
     
     if @habit.save
-      redirect_to habits_path, success: 'success habit create'
+      redirect_to habits_path, success: t('habits.create.success')
     else
-      flash.now[danger] = 'failed habit create'
-      render :new, status: :unprocessable_entity
+      redirect_to habits_path, danger: t('habits.create.failure')
     end
   end
 
@@ -32,9 +31,9 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.find(params[:id])
     
     if @habit.update(habit_params)
-      redirect_to habits_path, success: 'update habit!'
+      redirect_to habits_path, success: t('habits.update.success')
     else
-      flash.now[:danger] = 'faild update habit'
+      flash.now[:danger] = t('habits.update.failure')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -42,7 +41,7 @@ class HabitsController < ApplicationController
   def destroy
     @habit = current_user.habits.find(params[:id])
     @habit.destroy
-    redirect_to habits_path, success: 'habits deleted!'
+    redirect_to habits_path, success: t('habits.destroy.success')
   end
 
   private
