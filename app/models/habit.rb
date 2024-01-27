@@ -15,7 +15,8 @@ class Habit < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  validate :start_date_cannot_be_in_the_past
+  validate :start_date_cannot_be_in_the_past, on: :create
+  validate :start_date_cannot_be_before_creation, on: :update
 
   def active_on?(date)
     start_date <= date && date <= end_date
@@ -25,5 +26,12 @@ class Habit < ApplicationRecord
 
   def start_date_cannot_be_in_the_past
     errors.add(:start_date, "can't be in the past") if start_date.present? && start_date < Date.today
+  end
+
+  def start_date_cannot_be_before_creation
+    if start_date.present? && persisted?
+      original_habit = Habit.find(id)
+      errors.add(:start_date, "can't be before the creation date") if start_date < original_habit.start_date
+    end
   end
 end
