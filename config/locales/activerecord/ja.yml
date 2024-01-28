@@ -33,5 +33,6 @@ ja:
   defaults:
     comment: コメントする
     post: 投稿する
-
-        
+    habit: 習慣を作成する
+    update: 更新する
+    delete_confirm: 削除しますか？
