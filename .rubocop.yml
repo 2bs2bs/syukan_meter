@@ -8,6 +8,9 @@ AllCops:
     - "config/**/*"
     - "bin/*"
     - "node_modules/**/*"
+    - "Gemfile"
+    - "Rakefile"
+    - "test/**/**"
 
   # 新ルールを有効化
   NewCops: enable

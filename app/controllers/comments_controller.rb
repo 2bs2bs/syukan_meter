@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :require_login, only: [:create, :edit, :update, :destroy]
+  before_action :require_login, only: %i[create update destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -8,9 +8,8 @@ class CommentsController < ApplicationController
 
   def update
     @comment = current_user.comment.find(params[:id])
-
   end
-  
+
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment.destroy!

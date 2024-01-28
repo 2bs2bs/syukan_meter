@@ -4,7 +4,7 @@
   <h1 class="text-3xl font-semibold mb-4"><%= t('.title') %></h1>
 
   <div class="flex justify-center mb-4">
-    <button id="open-modal-button" class="mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">create habit!!</button>
+    <button id="open-modal-button" class="mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700"><%= t('defaults.habit') %></button>
   </div>
 
   <div class="modal hidden" id="new-habit-modal">
@@ -21,14 +21,14 @@
   <% end %>
 
   <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('turbo:load', () => {
       const openModalButton = document.getElementById('open-modal-button');
       const modal = document.getElementById('new-habit-modal');
-
+    
       openModalButton.addEventListener('click', () => {
         modal.classList.remove('hidden');
         openModalButton.classList.add('hidden');
       });
-    });
+    });  
   </script>
 </div>

@@ -1,6 +1,6 @@
 class HabitsController < ApplicationController
   before_action :require_login
-  
+
   def index
     @habits = current_user.habits
   end
@@ -9,18 +9,18 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.new
   end
 
-  def create
-    @habit = current_user.habits.build(habit_params)
-    
-    if @habit.save
-      redirect_to habits_path, success: t('habits.create.success')
-    else
-      redirect_to habits_path, danger: t('habits.create.failure')
-    end
-  end
-
   def show
     @habit = current_user.habits.find(params[:id])
+  end
+
+  def create
+    @habit = current_user.habits.build(habit_params)
+
+    if @habit.save
+      redirect_to habits_path, success: t('.success')
+    else
+      redirect_to habits_path, danger: t('.failure')
+    end
   end
 
   def edit
@@ -29,11 +29,11 @@ class HabitsController < ApplicationController
 
   def update
     @habit = current_user.habits.find(params[:id])
-    
+
     if @habit.update(habit_params)
-      redirect_to habits_path, success: t('habits.update.success')
+      redirect_to habits_path, success: t('.success')
     else
-      flash.now[:danger] = t('habits.update.failure')
+      flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -41,7 +41,7 @@ class HabitsController < ApplicationController
   def destroy
     @habit = current_user.habits.find(params[:id])
     @habit.destroy
-    redirect_to habits_path, success: t('habits.destroy.success')
+    redirect_to habits_path, success: t('.success')
   end
 
   private

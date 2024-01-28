@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    unless current_user
-      not_authenticated
-    end
+    return if current_user
+
+    not_authenticated
   end
 
   def not_authenticated
