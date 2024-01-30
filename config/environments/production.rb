@@ -108,6 +108,8 @@ Rails.application.configure do
       domain: 'gmail.com', #Gmailを使う場合
       user_name: mail, #Gmailアカウントのメールアドレス
       password: pass, #Gmailで設定したアプリパスワード
+      user_name: ENV['GMAIL_ADDRESS'],
+      password: ENV['GMAIL_PASSWORD'],
       authentication: :plain,
       enable_starttls_auto: true
     }
