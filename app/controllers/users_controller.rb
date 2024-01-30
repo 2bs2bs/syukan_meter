@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def show
+    @user = User.includes(:profile, posts: :bookmarks).find(params[:id])
+    @bookmarked_posts = @user.bookmark_posts.includes(:bookmarks, user: :profile)
+  end
+
   def new
     @user = User.new
     @user.build_profile
@@ -14,11 +19,6 @@ class UsersController < ApplicationController
       flash.now[:danger] = t('users.create.failure')
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @user = User.includes(:profile, posts: :bookmarks).find(params[:id])
-    @bookmarked_posts = @user.bookmark_posts.includes(:bookmarks, user: :profile)
   end
 
   private

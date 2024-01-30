@@ -11,11 +11,11 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    
+
     if @post.save
-      redirect_to posts_path, success: t('posts.create.success')
+      redirect_to posts_path, success: t('.success')
     else
-      redirect_to posts_path, danger: t('posts.create.failure')
+      redirect_to posts_path, danger: t('.failure')
     end
   end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to posts_path, success: t('posts.update.success')
+      redirect_to posts_path, success: t('.success')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     post = current_user.posts.find(params[:id])
   
     post.destroy!
-    redirect_to posts_path, success: t('posts.destroy.success')
+    redirect_to posts_path, success: t('.success')
   end
 
   private

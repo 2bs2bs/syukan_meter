@@ -1,5 +1,5 @@
 class Pomodoro < ApplicationRecord
-  # table_name: 
+  # table_name: pomodoros
   #
   # id:
   # user_id:    references
@@ -10,7 +10,6 @@ class Pomodoro < ApplicationRecord
   # end_at:     datetime
   # created_at: datetime
   # updated_at: datetime
-
 
   belongs_to :user
 end

@@ -6,7 +6,7 @@ class Habit < ApplicationRecord
   # description: text
   # start_date:  date
   # end_date:    date
- 
+
   belongs_to :user
   has_many :progresses, dependent: :destroy
 

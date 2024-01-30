@@ -5,12 +5,12 @@ class HabitsController < ApplicationController
     @habits = current_user.habits
   end
 
-  def new
-    @habit = current_user.habits.new
-  end
-
   def show
     @habit = current_user.habits.find(params[:id])
+  end
+
+  def new
+    @habit = current_user.habits.new
   end
 
   def create
