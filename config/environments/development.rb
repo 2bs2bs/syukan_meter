@@ -70,10 +70,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :smtp
+
+  mail = ENV['GMAIL_ADDRESS']
+  pass = ENV['GMAIL_PASSWORD']
+
   config.action_mailer.smtp_settings = {
      address: 'smtp.gmail.com',
      port: 587,
      domain: 'gmail.com',
+     user_name: mail,
+     password: pass,
      user_name: ENV['GMAIL_ADDRESS'],
      password: ENV['GMAIL_PASSWORD'],
      authentication: 'plain',

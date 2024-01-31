@@ -55,6 +55,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'letter_opener_web', '~> 2.0' 
   gem 'cssbundling-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

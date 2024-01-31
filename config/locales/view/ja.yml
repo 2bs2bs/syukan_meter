@@ -2,8 +2,8 @@ ja:
   helpers:
     submit:
       create: 登録する
-      submit: 保存
-      update: 更新
+      submit: 保存する
+      update: 更新する
       comment: コメントする
     label:
       email: メールアドレス
@@ -19,6 +19,16 @@ ja:
       failure: ログイン失敗しました
     destroy:
       success: ログアウトしました！
+  password_resets:
+    new:
+      title: 新規パスワード発行案内
+    create:
+      success: 設定されたメールアドレスへメールを送信しました
+    edit:
+      title: 新しいパスワード設定
+    update: 
+      success: 新しいパスワードを設定しました
+      failure: パスワード設定に問題が発生しました
   users:
     new:
       title: ユーザー登録
