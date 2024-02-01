@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:comments, :bookmarks, user: :profile).order(created_at: :desc)
+    @posts = @posts.page(params[:page])
   end
 
   def new
