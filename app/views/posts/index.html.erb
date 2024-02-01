@@ -16,6 +16,7 @@
   <% else %>
     <div class="text-gray-600 mb-3">投稿がありません</div>
   <% end %>
+  <%= paginate @posts %>
 
   <script>
     document.addEventListener('turbo:load', () => {
