@@ -56,6 +56,8 @@ group :development, :test do
   gem 'letter_opener_web', '~> 2.0' 
   gem 'cssbundling-rails'
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
