@@ -2,7 +2,7 @@ class HabitsController < ApplicationController
   before_action :require_login
 
   def index
-    @habits = current_user.habits
+    @habits = current_user.habits.order(created_at: :desc)
   end
 
   def show

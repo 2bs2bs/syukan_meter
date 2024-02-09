@@ -68,7 +68,7 @@ RSpec.configure do |config|
   
   # spec_fileでfactory_botで使えるようにする
   config.include FactoryBot::Syntax::Methods
-
+  config.include LoginMacros
 
   config.before(:each, type: :system) do
     driven_by :selenium, 
