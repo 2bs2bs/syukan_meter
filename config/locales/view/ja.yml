@@ -22,6 +22,7 @@ ja:
   password_resets:
     new:
       title: 新規パスワード発行案内
+      send: 送信する
     create:
       success: 設定されたメールアドレスへメールを送信しました
     edit:
