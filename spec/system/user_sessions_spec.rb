@@ -4,7 +4,6 @@ RSpec.describe "UserSessions", type: :system do
   let(:user) { create(:user) }
 
   describe 'ログイン前' do
-
     context '入力が適切' do
       it 'ログイン成功' do
         visit login_path
@@ -46,7 +45,7 @@ RSpec.describe "UserSessions", type: :system do
 
         # フラッシュメッセージを確認しないとテスト失敗するため注意
         expect(page).to have_content 'ログインしました！良い習慣を！'
-        
+
         visit home_path
         click_on 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
