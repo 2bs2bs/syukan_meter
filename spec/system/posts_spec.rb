@@ -59,29 +59,57 @@ RSpec.describe "Posts", type: :system do
       end
     end
 
+    before { login(user) }
     describe '投稿編集' do
       let!(:post) { create(:post, user: user) }
       let(:other_post) { create(:post, user: user) }
-      # before { visit edit_post_path(post) }
 
       context '入力が適切' do
-        it '投稿に編集ボタンがあるか確認' do
-          visit posts_path
-          expect(page).to have_content post.body
-          expect(page).to have_link('', href: edit_post_path(post))
+        it '編集成功' do
+          visit edit_post_path(post)
+          fill_in 'post[body]', with: 'テスト編集'
+          click_button '投稿する'
+          expect(page).to have_content '投稿を更新しました！'
+          expect(page).to have_content 'テスト編集'
+          expect(page).to have_content post.created_at.strftime('%Y/%m/%d')
+          expect(current_path).to eq posts_path
         end
-        # it '編集成功' do
-        #   fill_in 'post[body]', with: 'テスト編集'
-        #   click_button '投稿する'
-        #   expect(page).to have_content '投稿を更新しました！'
-        #   expect(page).to have_content 'テスト編集'
-        #   expect(page).to have_content post.created_at.strftime('%Y/%m/%d')
-        #   expect(current_path).to eq posts_path
-        # end
+      end
+
+      context '入力が不適切' do
+        it '編集失敗' do
+          visit edit_post_path(post)
+          fill_in 'post[body]', with: ''
+          click_button '投稿する'
+          expect(page).to have_content '投稿内容を入力してください'
+          expect(current_path).to eq edit_post_path(post)
+        end
+      end
+
+      context '入力が不適切' do
+        it '編集失敗' do
+          visit edit_post_path(post)
+          fill_in 'post[body]', with: 'a' * 256
+          click_button '投稿する'
+          expect(page).to have_content '投稿内容は255文字以内で入力してください'
+          expect(current_path).to eq edit_post_path(post)
+        end
       end
     end
 
-    describe '投稿削除' do
-    end
+    # describe '投稿削除' do
+    #   let!(:post) { create(:post, user: user) }
+
+    #   context '投稿削除' do
+    #     it '削除成功' do
+    #       visit posts_path
+    #       find("#delete-post-#{post.id}").click
+    #       page.driver.browser.switch_to.alert.accept
+    #       expect(page).to have_content '削除しますか？'
+    #       expect(current_path).to eq posts_path
+    #       expect(page).not_to have_content post.body
+    #     end
+    #   end
+    # end
   end
 end
