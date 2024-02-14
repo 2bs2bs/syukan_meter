@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
         expect(user2.errors[:email]).to eq ['はすでに存在します'] 
       end
 
-      it 'password more than 3charactors' do
+      it 'password less than 3 characters' do
         user = build(:user, password: 'pa', password_confirmation: 'pa')
         expect(user).to be_invalid
         expect(user.errors[:password]).to eq ['は3文字以上で入力してください']
