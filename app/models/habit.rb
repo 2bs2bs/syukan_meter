@@ -30,7 +30,9 @@ class Habit < ApplicationRecord
   end
 
   def end_date_cannot_be_in_the_start_date
-    errors.add(:end_date, "can't be in the past ") if end_date.present? && end_date < start_date
+    return if start_date.blank? || end_date.blank?
+
+    errors.add(:end_date, "can't be in the past") if end_date.present? && end_date < start_date
   end
 
   def start_date_cannot_be_before_creation
