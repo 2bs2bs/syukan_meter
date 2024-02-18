@@ -59,7 +59,6 @@ RSpec.describe "Posts", type: :system do
       end
     end
 
-    before { login(user) }
     describe '投稿編集' do
       let!(:post) { create(:post, user: user) }
       let(:other_post) { create(:post, user: user) }

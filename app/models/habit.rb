@@ -26,13 +26,13 @@ class Habit < ApplicationRecord
   private
 
   def start_date_cannot_be_in_the_past
-    errors.add(:start_date, "can't be in the past") if start_date.present? && start_date < Date.today
+    errors.add(:start_date, "当日以降を入力してください") if start_date.present? && start_date < Date.today
   end
 
   def end_date_cannot_be_in_the_start_date
     return if start_date.blank? || end_date.blank?
 
-    errors.add(:end_date, "can't be in the past") if end_date.present? && end_date < start_date
+    errors.add(:end_date, "開始日以降を入力してください") if end_date.present? && end_date < start_date
   end
 
   def start_date_cannot_be_before_creation
