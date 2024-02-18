@@ -1,18 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-  let(:user) { create(:user) }
+  let(:user) { build(:user) }
   let!(:other_user) { create(:user, email: 'not_unique@com') }
 
   describe 'ログイン前' do
-    describe 'user作成' do
-      context '入力が適切' do
-        it 'user登録成功' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
-          fill_in 'user_email', with: 'email@example.com'
-          fill_in 'user_password', with: 'password'
-          fill_in 'user_password_confirmation', with: 'password'
+    describe 'user create' do
+      before {
+        visit new_user_path
+        fill_in 'user_profile_attributes_user_name', with: user.profile.user_name
+        fill_in 'user_email', with: user.email
+        fill_in 'user_password', with: user.password
+        fill_in 'user_password_confirmation', with: user.password_confirmation
+      }
+
+      context 'input is correct' do
+        it 'user create success' do
           click_button '登録する'
           expect(page).to have_content '登録とログインしました！良い習慣を！'
           expect(current_path).to eq home_path
@@ -21,11 +24,7 @@ RSpec.describe "Users", type: :system do
 
       context 'user_nameがnil' do
         it 'user登録失敗' do
-          visit new_user_path
           fill_in 'user_profile_attributes_user_name', with: ''
-          fill_in 'user_email', with: 'email@example.com'
-          fill_in 'user_password', with: 'password'
-          fill_in 'user_password_confirmation', with: 'password'
           click_button '登録する'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(page).to have_content 'ユーザー名を入力してください'
@@ -35,11 +34,7 @@ RSpec.describe "Users", type: :system do
 
       context 'メールアドレスがnil' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
           fill_in 'user_email', with: ''
-          fill_in 'user_password', with: 'password'
-          fill_in 'user_password_confirmation', with: 'password'
           click_button '登録する'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(page).to have_content 'メールアドレスを入力してください'
@@ -49,11 +44,7 @@ RSpec.describe "Users", type: :system do
 
       context 'メールアドレスがユニークじゃない' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
           fill_in 'user_email', with: other_user.email
-          fill_in 'user_password', with: 'password'
-          fill_in 'user_password_confirmation', with: 'password'
           click_button '登録する'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(page).to have_content 'メールアドレスはすでに存在します'
@@ -63,11 +54,7 @@ RSpec.describe "Users", type: :system do
 
       context 'passwordがnil' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
-          fill_in 'user_email', with: 'email@example.com'
           fill_in 'user_password', with: ''
-          fill_in 'user_password_confirmation', with: 'password'
           click_button '登録する'
           expect(page).to have_content 'ユーザー登録に失敗しました'
           expect(page).to have_content 'パスワードを入力してください'
@@ -78,10 +65,6 @@ RSpec.describe "Users", type: :system do
 
       context 'password_confirmationがnil' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
-          fill_in 'user_email', with: 'email@example.com'
-          fill_in 'user_password', with: 'password'
           fill_in 'user_password_confirmation', with: ''
           click_button '登録する'
           expect(page).to have_content 'ユーザー登録に失敗しました'
@@ -93,9 +76,6 @@ RSpec.describe "Users", type: :system do
 
       context 'passwordとpassword_confirmationが3文字以下' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
-          fill_in 'user_email', with: 'email@example.com'
           fill_in 'user_password', with: 'pa'
           fill_in 'user_password_confirmation', with: 'pa'
           click_button '登録する'
@@ -107,9 +87,6 @@ RSpec.describe "Users", type: :system do
 
       context 'passwordとpassword_confirmationが一致しない' do
         it 'user登録失敗' do
-          visit new_user_path
-          fill_in 'user_profile_attributes_user_name', with: 'test_user'
-          fill_in 'user_email', with: 'email@example.com'
           fill_in 'user_password', with: 'password'
           fill_in 'user_password_confirmation', with: 'pass'
           click_button '登録する'

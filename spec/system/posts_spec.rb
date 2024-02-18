@@ -21,16 +21,18 @@ RSpec.describe "Posts", type: :system do
   describe 'ログイン後' do
     before { login(user) }
 
-    describe '投稿作成' do
-      context '入力が適切' do
-        it '投稿作成成功' do
-          visit posts_path
-          click_on '投稿する'
-          expect(page).to have_selector('#new-post-modal:not(.hidden)')
-          fill_in 'post[body]', with: 'テスト投稿の内容'
+    describe 'post create' do
+      before { 
+        visit posts_path
+        click_on '投稿する'
+        expect(page).to have_selector('#new-post-modal:not(.hidden)')
+        fill_in 'post[body]', with: post.body
+      }
+      context 'input is correct' do
+        it 'post create success' do
           click_button '投稿する'
           expect(page).to have_content '投稿しました！'
-          expect(page).to have_content 'テスト投稿の内容'
+          expect(page).to have_content post.body
           expect(page).to have_content post.created_at.strftime('%Y/%m/%d')
           expect(current_path).to eq posts_path
         end
@@ -38,9 +40,6 @@ RSpec.describe "Posts", type: :system do
 
       context 'bodyが空白' do
         it '投稿作成失敗' do
-          visit posts_path
-          click_on '投稿する'
-          expect(page).to have_selector('#new-post-modal:not(.hidden)')
           fill_in 'post[body]', with: ''
           click_button '投稿する'
           expect(page).to have_content '投稿に失敗しました'
@@ -49,9 +48,6 @@ RSpec.describe "Posts", type: :system do
 
       context '文字が256文字以上' do
         it '投稿作成失敗' do
-          visit posts_path
-          click_on '投稿する'
-          expect(page).to have_selector('#new-post-modal:not(.hidden)')
           fill_in 'post[body]', with: 'a' * 256
           click_button '投稿する'
           expect(page).to have_content '投稿に失敗しました'
@@ -96,19 +92,19 @@ RSpec.describe "Posts", type: :system do
       end
     end
 
-    # describe '投稿削除' do
-    #   let!(:post) { create(:post, user: user) }
+    describe '投稿削除' do
+      let!(:post) { create(:post, user: user) }
 
-    #   context '投稿削除' do
-    #     it '削除成功' do
-    #       visit posts_path
-    #       find("#delete-post-#{post.id}").click
-    #       page.driver.browser.switch_to.alert.accept
-    #       expect(page).to have_content '削除しますか？'
-    #       expect(current_path).to eq posts_path
-    #       expect(page).not_to have_content post.body
-    #     end
-    #   end
-    # end
+      context 'delete post' do
+        it 'delete post success' do
+          visit posts_path
+          find("#delete-post-#{post.id}").click
+          expect(page.accept_confirm).to eq "削除しますか？"
+          expect(page).to have_content "投稿を削除しました"
+          expect(current_path).to eq posts_path
+          expect(page).not_to have_content post.body
+        end
+      end
+    end
   end
 end
