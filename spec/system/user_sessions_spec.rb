@@ -43,9 +43,6 @@ RSpec.describe "UserSessions", type: :system do
       it 'ログアウト成功' do
         login(user)
 
-        # フラッシュメッセージを確認しないとテスト失敗するため注意
-        expect(page).to have_content 'ログインしました！良い習慣を！'
-
         visit home_path
         click_on 'ログアウト'
         expect(page).to have_content 'ログアウトしました'

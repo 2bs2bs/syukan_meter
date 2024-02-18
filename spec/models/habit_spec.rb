@@ -44,14 +44,14 @@ RSpec.describe Habit, type: :model do
       it 'start_date < today' do
         habit = build(:habit, start_date: Date.today - 1.days )
         expect(habit).to be_invalid
-        expect(habit.errors[:start_date]).to eq ["can't be in the past"]
+        expect(habit.errors[:start_date]).to eq ["当日以降を入力してください"]
       end
 
       it 'start_date > end_date' do
         habit = build(:habit)
         habit.end_date = habit.start_date - 5.days
         expect(habit).to be_invalid
-        expect(habit.errors[:end_date]).to eq ["can't be in the past"]
+        expect(habit.errors[:end_date]).to eq ["開始日以降を入力してください"]
       end
     end
   end
