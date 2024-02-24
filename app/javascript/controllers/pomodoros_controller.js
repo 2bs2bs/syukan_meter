@@ -4,25 +4,40 @@ export default class extends Controller {
   static targets = ["time", "start"]
   timerId = null;
 
+
+  // 定数の定義
+  WORK_TIME = 25 * 60; // 25分
+  BREAK_TIME = 5 * 60; // 5分
+
   connect() {
-    this.timeValue = 25 * 60; // 25minをsecで表現
+    this.timeValue = this.WORK_TIME; // 作業タイマーをデフォルトに設定
+    this.isWorkTimer = true;
     this.updateDisplay();
   }
 
   // タイマーのスタートロジック
   start() {
-    if(!this.timerId){
+    if (!this.timerId) {
       this.timerId = setInterval(() => {
         this.timeValue -= 1;
         this.updateDisplay();
-        if(this.timeValue === 0){
-          clearInterval(this.timerId);
-          this.timerId = null;
-          alert('Time is up!');
-          //ここで必要なら休憩タイマーを開始するロジックを追加できる
+        if (this.timeValue === 0) {
+          this.endTimer();
         }
       }, 1000);
     }
+  }
+
+  // タイマーの終了処理
+  endTimer() {
+    clearInterval(this.timerId);
+    this.timerId = null;
+    alert('Time is up!');
+    this.timeValue = this.isWorkTimer ? this.BREAK_TIME : this.WORK_TIME; // 作業タイマーと休憩タイマーを切り替える
+    this.isWorkTimer = !this.isWorkTimer; // 状態を切り替える
+    this.updateDisplay();
+
+    this.startTarget.textContent = this.isWorkTimer ? '作業開始' : '休憩開始';
   }
 
   // タイマーの一時停止ロジック
@@ -34,6 +49,7 @@ export default class extends Controller {
   // タイマーのリセットロジック
   reset() {
     this.pause();
+    this.timeValue = this.isWorkTimer ? this.WORK_TIME : this.BREAK_TIME; // 現在のモードに応じてタイムをリセット
     this.updateDisplay();
   }
 

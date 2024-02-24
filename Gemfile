@@ -90,3 +90,6 @@ gem 'tailwindcss-rails'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'sendgrid-ruby'
 gem 'kaminari'
+
+gem 'aws-sdk-s3', require: false
+gem 'fog-aws'
