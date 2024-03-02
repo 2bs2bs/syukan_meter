@@ -3,20 +3,53 @@ import { Controller } from "@hotwired/stimulus"
 const WORK_DURATION  = 25; 
 const BREAK_DURATION = 5;
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
 export default class extends Controller {
   static targets = ["time", "start"]
+
   timerId = null;
   mode = "work"; // 作業モードと休憩モードを切り替えるためのプロパティ
 
   connect() {
-    this.setTimer(25); // 最初は25分の作業タイマーからスタート
+    const savedTime = getCookie('timeValue');
+    const savedMode = getCookie('mode');
+    this.mode = savedMode || "work";
+    this.timeValue = parseInt(savedTime, 10) || WORK_DURATION * 60;
+    this.updateDisplay();
+    this.updateButtonText();
   }
 
   // タイマーの時間をセットするメソッド
   setTimer(minutes) {
     this.timeValue = minutes * 60;
     this.updateDisplay();
-    this.updateButtonText(); // ボタンのテキスト更新を別メソッドに分離
+    this.updateButtonText();
+    setCookie('timeValue', this.timeValue, 1);
+    setCookie('mode', this.mode, 1);
   }
 
   updateButtonText() {
@@ -29,17 +62,22 @@ export default class extends Controller {
       this.timerId = setInterval(() => {
         this.timeValue -= 1;
         this.updateDisplay();
+  
+        // タイマーの状態を1秒ごとに保存
+        setCookie('timeValue', this.timeValue, 1);
+        setCookie('mode', this.mode, 1);
+  
         if (this.timeValue === 0) {
           clearInterval(this.timerId);
           this.timerId = null;
           alert('Time is up!');
-          // タイマーが0になったら、モードを切り替えてタイマーを再設定する
+  
           if (this.mode === "work") {
-            this.mode = "break"; // 作業モードから休憩モードに切り替え
-            this.setTimer(BREAK_DURATION); // 5分の休憩タイマーをセット
+            this.mode = "break";
+            this.setTimer(BREAK_DURATION); 
           } else {
-            this.mode = "work"; // 休憩モードから作業モードに切り替え
-            this.setTimer(WORK_DURATION); // 25分の作業タイマーをセット
+            this.mode = "work";
+            this.setTimer(WORK_DURATION);
           }
         }
       }, 1000);
@@ -50,12 +88,16 @@ export default class extends Controller {
   pause() {
     clearInterval(this.timerId);
     this.timerId = null;
+    setCookie('timeValue', this.timeValue, 1);
   }
+  
 
   // タイマーのリセットロジック
   reset() {
     this.pause();
+    this.timeValue = this.mode === "work" ? WORK_DURATION * 60 : BREAK_DURATION * 60;
     this.updateDisplay();
+    setCookie('timeValue', this.timeValue, 1);
   }
 
   // 表示の更新ロジック
