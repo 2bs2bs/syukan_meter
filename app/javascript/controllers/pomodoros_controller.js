@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
-const WORK_DURATION = 1;
-const BREAK_DURATION = 1;
+const WORK_DURATION = 25;
+const BREAK_DURATION = 5;
 
 export default class extends Controller {
   static targets = ["time", "start"]
