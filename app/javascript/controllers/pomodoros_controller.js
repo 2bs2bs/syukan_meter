@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
-const WORK_DURATION = 25;
-const BREAK_DURATION = 5;
+const WORK_DURATION = 1;
+const BREAK_DURATION = 1;
 
 export default class extends Controller {
   static targets = ["time", "start"]
@@ -16,6 +16,7 @@ export default class extends Controller {
   }
 
   setTimer(minutes) {
+    this.initialTimeValue = minutes * 60;
     this.timeValue = minutes * 60;
     this.updateDisplay();
     this.updateButtonText();
@@ -27,9 +28,12 @@ export default class extends Controller {
   }
 
   start() {
+    console.log(this.initialTimeValue);
     if (!this.timerId) {
+      this.startTime = Date.now(); //タイマー開始時刻を記録
       this.timerId = setInterval(() => {
-        this.timeValue -= 1;
+        const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000 );
+        this.timeValue = this.initialTimeValue - elapsedTime;
         this.updateDisplay();
 
         this.saveToSession();
@@ -51,16 +55,18 @@ export default class extends Controller {
   }
 
   createPomodoro(){
+    const endTime = new Date().toISOString();
+
     fetch('/pomodoros',{
-      method: 'Post',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       },
-      body: JSON.stringify({ start_at: startTime, ended_at: endTime })
+      body: JSON.stringify({ pomodoro: { start_at: new Date(this.startTime).toISOString(), end_at: endTime } })
     })
     .then(response => response.json())
-    .then(date => {
+    .then(data => {
       // レスポンスに基づいた処理を追加
     })
     .catch(error => console.error('Error creating Pomodoro:', error));
@@ -74,8 +80,11 @@ export default class extends Controller {
 
   reset() {
     this.pause();
-    this.mode = "work";
-    this.setTimer(WORK_DURATION);
+    if (this.mode === "break"){
+      this.setTimer(BREAK_DURATION);
+    } else {
+      this.setTimer(WORK_DURATION);
+    }
   }
 
   updateDisplay() {
@@ -99,6 +108,7 @@ export default class extends Controller {
     const savedMode = sessionStorage.getItem('mode');
     this.mode = savedMode || "work";
     this.timeValue = savedTime || WORK_DURATION * 60;
+    this.initialTimeValue = this.timeValue;
   }
 
   saveToSession() {

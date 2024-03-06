@@ -4,7 +4,7 @@ class PomodorosController < ApplicationController
   end
 
   def create
-    @pomodoro = Pomodoro.new(pomodoro_params)
+    @pomodoro = current_user.pomodoros.build(pomodoro_params)
     
     if @pomodoro.save
       render json: @pomodoro, status: :created
@@ -16,6 +16,6 @@ class PomodorosController < ApplicationController
   private
 
   def pomodoro_params
-    params.require(:pomodoro).permit(:started_at, :ended_at)
+    params.require(:pomodoro).permit(:start_at, :end_at)
   end
 end
