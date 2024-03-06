@@ -11,4 +11,9 @@
       </div>
     <% end %>
   <% end %>
+  <% if @pomodoros_by_day[date] %>
+    <div class="mt-2 p-2 rouded-md bg-green-200 text-green-800">
+      ポモドーロ数: <%= @pomodoros_by_day[date] %>回
+    </div>
+  <% end %>
 <% end %>

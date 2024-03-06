@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :bookmarks, only: %i[create destroy]
-  resources :pomodoros, only: %i[index new create show]
+  resources :pomodoros, only: %i[index new create]
   resources :calendars, only: %i[index]
   resources :habits do
     collection do
