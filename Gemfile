@@ -82,7 +82,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'sorcery', '0.16.3'
+gem 'sorcery', '0.17.0'
 gem 'carrierwave'
 gem 'config'
 gem 'simple_calendar'
@@ -92,3 +92,7 @@ gem 'sendgrid-ruby'
 gem 'kaminari'
 gem 'aws-sdk-s3', require: false
 gem 'fog-aws'
+gem 'line-bot-api'
+gem 'sidekiq'
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
