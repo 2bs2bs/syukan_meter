@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :pomodoros, dependent: :destroy
   has_many :habits, dependent: :destroy
   has_many :progresses, through: :habits
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   accepts_nested_attributes_for :profile
 
