@@ -19,7 +19,7 @@
       <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "hover:underline text-white" %>
       <div class="flex items-center">
         <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.profile.avatar.url, class: "rounded-full h-8 w-8" %>
+          <%= image_tag (current_user.profile&.avatar.present? ? current_user.profile.avatar.url : asset_path("sample_avatar.png")), class: "rounded-full h-8 w-8" %>
         <% end %>
       </div>
     </nav>
