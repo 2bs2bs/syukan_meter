@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
+  # LINELogginのための記載
+  attr_accessor :temporary_name, :temporary_avatar
+  before_save :assign_profile_attributes
+
   def own?(object)
     id == object&.user_id
   end
@@ -34,5 +38,13 @@ class User < ApplicationRecord
 
   def bookmark?(post)
     bookmark_posts.include?(post)
+  end
+
+  private
+
+  def assign_profile_attributes
+    build_profile unless profile
+    profile.user_name = temporary_name if temporary_name
+    profile.avatar = temporary_avatar if temporary_avatar
   end
 end
