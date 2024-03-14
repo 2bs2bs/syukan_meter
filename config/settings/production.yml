@@ -1,2 +1,2 @@
 sorcery:
-    # line_callback_url: 'https://本番環境のドメイン/oauth/callback?provider=line'
+    line_callback_url: 'https://syukan-meter-a3b4e7eb43a0.herokuapp.com/oauth/callback?provider=line'

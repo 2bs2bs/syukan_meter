@@ -226,7 +226,11 @@ Rails.application.config.sorcery.configure do |config|
   config.line.callback_url = Settings.sorcery[:line_callback_url]
   config.line.scope = "profile"
   # config.line.bot_prompt = "normal"
-  config.line.user_info_mapping = {:email => 'userId'}
+  config.line.user_info_mapping = {
+    :email => 'userId',
+    :temporary_avatar => 'pictureUrl',
+    :temporary_name => 'displayName'
+  }
 
   
   # For information about Discord API
