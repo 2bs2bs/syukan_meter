@@ -1,6 +1,6 @@
 <%= content_for(:title, t('.title')) %>
 
-<div class="h-max flex-1 container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
+<div class="h-screen flex-1 container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
   <h1 class="text-2xl font-semibold mb-6"><%= t('.title') %></h1>
   <div class="grid grid-cols-2 gap-8">
     <!-- Timer Link -->
@@ -15,7 +15,7 @@
     </div>
 
     <!-- Habit Link -->
-    <div class="bg-green-500 text-black p-6 rounded-lg shadow-md text-center">
+    <div class="bg-green-500 text-black p-6 rounded-lg shadow-md text-center ">
       <%= link_to habits_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
         <span class="text-lg font-semibold mb-2"><%= t('.habit') %></span>
         <p class="text-sm">習慣にしたいことを登録しましょう！</p>
@@ -24,14 +24,18 @@
 
     <!-- Post Link -->
     <div class="bg-orange-500 text-black p-6 rounded-lg shadow-md text-center">
-      <%= link_to t('.post'), posts_path, class: "block text-lg font-semibold mb-2 hover:underline" %>
-      <p class="text-sm">頑張った内容を共有して高め合いましょう！</p>
+      <%= link_to posts_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
+        <span class="text-lg font-semibold mb-2"><%= t('.post') %></span>
+        <p class="text-sm">頑張った内容を共有して高め合いましょう！</p>
+      <% end %>
     </div>
 
     <!-- Calendar Link -->
     <div class="bg-purple-500 text-black p-6 rounded-lg shadow-md text-center">
-      <%= link_to t('.calendar'), calendars_path, class: "block text-lg font-semibold mb-2 hover:underline" %>
-      <p class="text-sm">カレンダーを用意しました！</br>今日できたかどうか記録しましょう！</br></p>
+      <%= link_to calendars_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
+        <span class="text-lg font-semibold mb-2"><%= t('.calendar') %></span>
+        <p class="text-sm">カレンダーを用意しました！</br>今日できたかどうか記録しましょう！</br></p>
+      <% end %>
     </div>
   </div>
 </div>
