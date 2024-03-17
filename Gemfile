@@ -94,5 +94,6 @@ gem 'aws-sdk-s3', require: false
 gem 'fog-aws'
 gem 'line-bot-api'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
