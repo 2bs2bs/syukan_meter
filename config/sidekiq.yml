@@ -5,7 +5,4 @@
       class: SendLineMessageJob
       queue: default
       description: "毎朝9時にLINEメッセージを送る"
-    example_job:
-      cron: '*/1 * * * *'
-      class: ExampleJob
   
