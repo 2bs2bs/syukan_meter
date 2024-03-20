@@ -47,6 +47,6 @@ class HabitsController < ApplicationController
   private
 
   def habit_params
-    params.require(:habit).permit(:name, :description, :start_date, :end_date)
+    params.require(:habit).permit(:name, :description, :start_date, :end_date, :notification_time)
   end
 end
