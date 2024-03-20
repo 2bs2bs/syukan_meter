@@ -1,8 +1,7 @@
 :scheduler:
   :schedule:
     send_line_message:
-      cron: "5 19 * * *"
+      cron: "0 * * * *"
       class: SendLineMessageJob
       queue: default
-      description: "毎朝9時にLINEメッセージを送る"
-  
+      description: "習慣の範囲内かつ現在の時間ならLINEメッセージを送る"
