@@ -30,6 +30,7 @@ ja:
         description: 習慣の説明
         start_date: 開始日
         end_date: 終了日
+        notification_time: 通知時間
   defaults:
     comment: コメントする
     post: 投稿する
