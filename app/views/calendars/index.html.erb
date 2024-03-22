@@ -1,4 +1,11 @@
 <%= content_for(:title, t('.title')) %>
+<div class="mb-6">
+  <p class="mb-2">習慣を作成したらカレンダーに表示されます！習慣を作成しましょう！<%= link_to "こちら", habits_path, class: "inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 text-sm mx-2 my-1" %></p>
+
+  <p class="mb-2">ポモドーロタイマーの回数も記録できます！<%= link_to "タイマーへ", pomodoros_path, class: "inline-block bg-green-500 text-white font-semibold py-2 px-3 rounded hover:bg-green-700 text-sm mx-2 my-1" %></p>
+
+  <p>習慣をできたらクリックで達成にしましょう！その日しかできないので注意してください！:)</p>
+</div>
 
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, header: true, class: "grid grid-cols-7 gap-4") do |date| %>
   <div class="flex items-center justify-center h-8 w-8 rounded-full">
