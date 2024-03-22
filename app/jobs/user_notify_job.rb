@@ -1,23 +1,27 @@
+require 'line/bot'
+
 class UserNotifyJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    # LINE Botクライアントの設定
-    client = Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["LINE_MESSAGE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_MESSAGE_CHANNEL_TOKEN"]
-    }
+    my_uid = ENV["MY_LINE_UID"]
 
-    # ユーザーに送信するメッセージを定義する
     message = {
       type: 'text',
-      text: "#{habit.name}の時間が来ました！ポモドーロを回しましょう！"
+      text: 'テストメッセージ'
     }
 
-    # ユーザーIDを使用してメッセージを送信する
-    response = client.push_message("", message)
+    response = line_client.push_message(my_uid, message)
 
-    # debug
     puts response.body
+  end
+
+  private
+
+  def line_client
+    Line::Bot::Client.new{ |config|
+      config.channel_secret = ENV["LINE_MESSAGING_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_MESSAGING_CHANNEL_TOKEN"]
+    }
   end
 end
