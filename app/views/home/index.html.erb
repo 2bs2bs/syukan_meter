@@ -1,41 +1,33 @@
 <%= content_for(:title, t('.title')) %>
 
-<div class="h-screen flex-1 container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
-  <h1 class="text-2xl font-semibold mb-6"><%= t('.title') %></h1>
-  <div class="grid grid-cols-2 gap-8">
+<div class="min-h-full flex flex-col justify-center container mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
+  <h1 class="text-2xl font-semibold mb-6 text-center"><%= t('.title') %></h1>
+  <div class="h-full grid grid-cols-2 gap-8">
     <!-- Timer Link -->
-    <div class="bg-blue-500 text-black p-6 rounded-lg shadow-md text-center">
-      <%= link_to pomodoros_path, class: "block hover:underline" do %>
-        <span class="text-lg font-semibold mb-2"><%= t('.timer') %></span>
-        <p class="text-sm">
-          25分タイマーを用意しました！ぜひ活用してください！</br>
-          1セット行うとカレンダーに記録されます！
-        </p>
-      <% end %>
-    </div>
+    <%= link_to pomodoros_path, class: "min-h-full flex flex-col items-center justify-center bg-blue-500 text-gray p-6 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1" do %>
+      <span class="text-lg font-semibold mb-2"><%= t('.timer') %></span>
+      <p class="text-sm text-center">
+        25分タイマーを用意しました！ぜひ活用してください！<br>
+        1セット行うとカレンダーに記録されます！
+      </p>
+    <% end %>
 
     <!-- Habit Link -->
-    <div class="bg-green-500 text-black p-6 rounded-lg shadow-md text-center ">
-      <%= link_to habits_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
-        <span class="text-lg font-semibold mb-2"><%= t('.habit') %></span>
-        <p class="text-sm">習慣にしたいことを登録しましょう！</p>
-      <% end %>
-    </div>
+    <%= link_to habits_path, class: "min-h-full flex flex-col items-center justify-center bg-green-500 text-gray p-6 rounded-lg shadow-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:-translate-y-1" do %>
+      <span class="text-lg font-semibold mb-2"><%= t('.habit') %></span>
+      <p class="text-sm">習慣にしたいことを登録しましょう！</p>
+    <% end %>
 
     <!-- Post Link -->
-    <div class="bg-orange-500 text-black p-6 rounded-lg shadow-md text-center">
-      <%= link_to posts_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
-        <span class="text-lg font-semibold mb-2"><%= t('.post') %></span>
-        <p class="text-sm">頑張った内容を共有して高め合いましょう！</p>
-      <% end %>
-    </div>
+    <%= link_to posts_path, class: "min-h-full flex flex-col items-center justify-center bg-orange-500 text-gray p-6 rounded-lg shadow-lg hover:bg-orange-700 transition duration-300 ease-in-out transform hover:-translate-y-1" do %>
+      <span class="text-lg font-semibold mb-2"><%= t('.post') %></span>
+      <p class="text-sm">頑張った内容を共有して高め合いましょう！</p>
+    <% end %>
 
     <!-- Calendar Link -->
-    <div class="bg-purple-500 text-black p-6 rounded-lg shadow-md text-center">
-      <%= link_to calendars_path, class: "block text-lg font-semibold mb-2 hover:underline" do %>
-        <span class="text-lg font-semibold mb-2"><%= t('.calendar') %></span>
-        <p class="text-sm">カレンダーを用意しました！</br>今日できたかどうか記録しましょう！</br></p>
-      <% end %>
-    </div>
+    <%= link_to calendars_path, class: "min-h-full flex flex-col items-center justify-center bg-purple-500 text-gray p-6 rounded-lg shadow-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1" do %>
+      <span class="text-lg font-semibold mb-2"><%= t('.calendar') %></span>
+      <p class="text-sm">カレンダーを用意しました！</br>今日できたかどうか記録しましょう！</br></p>
+    <% end %>
   </div>
 </div>
