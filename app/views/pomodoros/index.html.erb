@@ -1,15 +1,13 @@
-<%= content_for(:title, t('.title'))%>
+<div class="flex flex-col items-center justify-center">
+  <h1 class="text-3xl font-semibold mb-6 text-gray-700"><%= t('.title')%></h1>
 
-<div class="flex flex-col items-center justify-center bg-gray-100">
-  <h1 class="text-3xl font-semibold mb-6"><%= t('.title')%></h1>
+  <div id="timer" data-controller="pomodoros" class="bg-white p-8 rounded-lg shadow-xl text-center mb-8 container mx-auto max-w-md">
+    <span data-pomodoros-target="time" class="text-6xl font-bold mb-6 text-gray-700">25:00</span>
 
-  <div id="timer" data-controller="pomodoros" class="bg-white p-8 rounded-lg shadow-md text-center mb-8 container mx-auto max-w-md">
-    <span data-pomodoros-target="time" class="text-4xl font-bold mb-6">25:00</span>
+    <div class="flex items-center space-x-4 mt-10">
+      <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start" class="flex-grow bg-green-500 text-white px-10 py-3 rounded-full hover:bg-green-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"><%= t('.start') %></button>
 
-    <div class="flex items-center space-x-4">
-      <button id="start" data-action="click->pomodoros#toggleStartPause" data-pomodoros-target="start" class="flex-grow bg-blue-500 text-white px-10 py-3 rounded-full hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"><%= t('.start') %></button>
-
-      <button id="reset" data-action="click->pomodoros#reset" class="flex-grow bg-red-500 text-white px-10 py-3 rounded-full hover:bg-red-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"><%= t('.reset') %></button>
+      <button id="reset" data-action="click->pomodoros#reset" class="flex-grow bg-orange-500 text-white px-10 py-3 rounded-full hover:bg-orange-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"><%= t('.reset') %></button>
     </div>
   </div>
 </div>

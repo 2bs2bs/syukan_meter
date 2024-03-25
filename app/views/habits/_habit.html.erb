@@ -1,5 +1,5 @@
 <div class="bg-white rounded-lg p-4 mt-4 mb-4 shadow-md flex items-center">
-  <div class="w-full text-center">
+  <div class="w-full text-center w-4/6">
     <h2 class="text-xl font-semibold mb-2"><%= habit.name %></h2>
     <p class="text-gray-600 mb-2"><%= habit.description %></p>
     <p class="text-gray-500 mb-2"><strong>開始日：</strong> <%= habit.start_date %></p>
@@ -8,8 +8,8 @@
     
   </div>
 
-  <div class="flex items-center">
-    <%= link_to 'Edit', edit_habit_path(habit), class: "mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700" %>
-    <%= link_to 'Delete', habit_path(habit), data: { turbo_method: :delete, turbo_confirm: "「#{habit.name}」を削除しますか？" }, class: "bg-red-500 text-white py-2 px-4 rounded mb-4 hover:underline ml-4" %>
+  <div class="flex items-center w-2/6">
+    <%= link_to t('helpers.submit.edit'), edit_habit_path(habit), class: "mb-4 bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700" %>
+    <%= link_to t('helpers.submit.delete'), habit_path(habit), data: { turbo_method: :delete, turbo_confirm: "「#{habit.name}」を削除しますか？" }, class: "bg-red-500 text-white py-2 px-4 rounded mb-4 hover:underline ml-4" %>
   </div>
 </div>
