@@ -5,6 +5,8 @@ ja:
       submit: 保存する
       update: 更新する
       comment: コメントする
+      edit: 編集
+      delete: 削除
     label:
       email: メールアドレス
       password: パスワード
