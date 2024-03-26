@@ -42,6 +42,12 @@ ja:
     show:
       title: ユーザーページ
       edit_profile: プロフィール編集
+      edit_email: メールアドレス変更
+    edit:
+      title: メールアドレス変更
+    update:
+      success: メールアドレスを更新しました
+      failure: メールアドレスの更新に失敗しました
   profiles:
     edit: 
       title: プロフィール編集

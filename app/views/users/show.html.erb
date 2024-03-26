@@ -11,6 +11,7 @@
 
     <% if current_user === @user %>
       <%= link_to t('.edit_profile'), edit_profile_path, class: "text-blue-500 hover:underline mb-4 block" %>
+      <%= link_to t('.edit_email'), edit_user_path(current_user.id), class: "text-blue-500 hover:underline mb-4 block"%>
     <% end %>
 
     <div class="text-lg font-semibold">
