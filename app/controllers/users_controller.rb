@@ -21,9 +21,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(current_user.id)
+
+    if @user.update(user_params)
+      redirect_to user_path(current_user.id), success: t('.success')
+    else
+      flash.now[:danger] = t('.failure')
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, profile_attributes: [:user_name])
+    if action_name == 'create'
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, profile_attributes: [:user_name])
+    elsif action_name == 'update'
+      params.require(:user).permit(:email)
+    end
   end
 end
