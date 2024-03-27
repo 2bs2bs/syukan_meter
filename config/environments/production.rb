@@ -103,15 +103,25 @@ Rails.application.configure do
   mail = ENV['GMAIL_ADDRESS']
   pass = ENV['GMAIL_PASSWORD']
 
+  # config.action_mailer.smtp_settings = {
+  #     port: 587,
+  #     address:"smtp.gmail.com",
+  #     domain: 'gmail.com', #Gmailを使う場合
+  #     user_name: mail, #Gmailアカウントのメールアドレス
+  #     password: pass, #Gmailで設定したアプリパスワード
+  #     user_name: ENV['GMAIL_ADDRESS'],
+  #     password: ENV['GMAIL_PASSWORD'],
+  #     authentication: :plain,
+  #     enable_starttls_auto: true
+  #   }
+  
   config.action_mailer.smtp_settings = {
-      port: 587,
-      address:"smtp.gmail.com",
-      domain: 'gmail.com', #Gmailを使う場合
-      user_name: mail, #Gmailアカウントのメールアドレス
-      password: pass, #Gmailで設定したアプリパスワード
-      user_name: ENV['GMAIL_ADDRESS'],
-      password: ENV['GMAIL_PASSWORD'],
-      authentication: :plain,
-      enable_starttls_auto: true
-    }
+    :user_name => 'apikey',
+    :password => ENV['SENDGRID_API_KEY'],
+    :domain => 'yourdomain.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end
