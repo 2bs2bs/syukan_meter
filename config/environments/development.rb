@@ -97,5 +97,5 @@ Rails.application.configure do
   config.action_mailer.asset_host = 'http://localhost:3000'
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   
-  # config.hosts << "ngrokのドメイン"
+  config.hosts << "1c66-2400-4153-1420-7200-1934-4740-8ae4-21da.ngrok-free.app"
 end
