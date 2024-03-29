@@ -12,6 +12,7 @@ export default class extends Controller {
   connect() {
     this.loadFromSession();
     this.updateDisplay();
+    this.checkTimerStatus();
     this.updateButtonText();
   }
 
@@ -23,6 +24,18 @@ export default class extends Controller {
     this.saveToSession();
   }
 
+  checkTimerStatus() {
+    const startTime = sessionStorage.getItem('startTime');
+    if (startTime) {
+      const elapsedTime = Math.floor((Date.now() - parseInt(startTime, 10)) / 1000);
+      const remainingTime = this.initialTimeValue - elapsedTime;
+      if (remainingTime > 0) {
+        // タイマーがまだ動いている場合
+        this.startTarget.textContent = '一時停止';
+      }
+    }
+  }
+
   updateButtonText() {
     this.startTarget.textContent = this.mode === "work" ? "作業開始" : "休憩開始";
   }
@@ -30,27 +43,34 @@ export default class extends Controller {
   start() {
     console.log(this.initialTimeValue);
     if (!this.timerId) {
-      this.startTime = Date.now(); //タイマー開始時刻を記録
-      this.timerId = setInterval(() => {
-        const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000 );
-        this.timeValue = this.initialTimeValue - elapsedTime;
-        this.updateDisplay();
+      const savedTimeValue = sessionStorage.getItem('timeValue');
+      if (savedTimeValue){
+        this.timeValue = parseInt(savedTimeValue, 10);
+      }
+      this.startTime = Date.now() - (this.initialTimeValue - this.timeValue) * 1000; //タイマー開始時刻を記録
+      const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+      this.timeValue = this.initialTimeValue - elapsedTime;
+      sessionStorage.setItem('startTime', this.startTime.toString());
+      this.timerId = setInterval(this.updateTimer.bind(this), 1000);
+      this.startTarget.textContent = '一時停止'
+    }
+  }
 
-        this.saveToSession();
+  updateTimer(){
+    const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+    this.timeValue = this.initialTimeValue - elapsedTime;
+    this.updateDisplay();
+    this.saveToSession();
 
-        if (this.timeValue === 0) {
-          clearInterval(this.timerId);
-          this.timerId = null;
-          alert('Time is up!');
-
-          this.mode = this.mode === "work" ? "break" : "work";
-          this.setTimer(this.mode === "work" ? WORK_DURATION : BREAK_DURATION);
-
-          if (this.mode === "work") {
-            this.createPomodoro();
-          }
-        }
-      }, 1000);
+    if(this.timeValue <= 0){
+      clearInterval(this.timerId);
+      this.timeId = null;
+      alert('Time is up!');
+      this.mode = this.mode === "work" ? "break" : "work";
+      this.setTimer(this.mode === "work" ? WORK_DURATION : BREAK_DURATION);
+      if(this.mode === "work"){
+        this.createPomodoro();
+      }
     }
   }
 
@@ -75,6 +95,7 @@ export default class extends Controller {
   pause() {
     clearInterval(this.timerId);
     this.timerId = null;
+    sessionStorage.setItem('timeValue', this.timeValue.toString());
     this.saveToSession();
   }
 
@@ -96,7 +117,6 @@ export default class extends Controller {
   toggleStartPause() {
     if (!this.timerId) {
       this.start();
-      this.startTarget.textContent = '一時停止';
     } else {
       this.pause();
       this.startTarget.textContent = '再開';
@@ -106,9 +126,25 @@ export default class extends Controller {
   loadFromSession() {
     const savedTime = parseInt(sessionStorage.getItem('timeValue'), 10);
     const savedMode = sessionStorage.getItem('mode');
+    const savedStartTime = parseInt(sessionStorage.getItem('startTime'), 10)
+
     this.mode = savedMode || "work";
     this.timeValue = savedTime || WORK_DURATION * 60;
     this.initialTimeValue = this.timeValue;
+
+    // セッションストレージから保存されたstartTimeを読み込む
+    if(savedStartTime){
+      this.startTime = savedStartTime;
+      // 現在時刻と保存された開始時刻から経過時間を計算
+      const elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+      // 経過時間を考慮してtimeValueを更新
+      this.timeValue = Math.max(this.initialTimeValue - elapsedTime, 0);
+
+      // タイマーが0になっていなければ、タイマーを再開する
+      if(this.timeValue > 0){
+        this.start();
+      }
+    }
   }
 
   saveToSession() {
