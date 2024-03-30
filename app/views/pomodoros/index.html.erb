@@ -10,4 +10,28 @@
       <button id="reset" data-action="click->pomodoros#reset" class="flex-grow bg-orange-500 text-white px-10 py-3 rounded-full hover:bg-orange-600 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"><%= t('.reset') %></button>
     </div>
   </div>
+
+  <!-- modal -->
+  <div id="pomodoroModal" class="hidden">
+    <div class="bg-white p-5 rounded-lg w-full mx-auto">
+      <div class="flex justify-end">
+        <button onclick="closeModal()" class="text-blue-500">閉じる</button>
+      </div>
+      <div class="text-center my-4">
+        <p>1セットお疲れ様です！頑張ったことや内容を共有してみましょう！</p>
+        <%= link_to "こちら", posts_path, class: "inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 text-sm mx-2 my-1" %>
+      </div>
+    </div>
+  </div>
+  
 </div>
+
+<script>
+  function showModal() {
+    document.getElementById('pomodoroModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('pomodoroModal').style.display = 'none';
+  }
+</script>
