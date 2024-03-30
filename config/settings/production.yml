@@ -1,2 +1,2 @@
 sorcery:
-  line_callback_url: 'https://syukan-meter.com/oauth/callback?provider=line&bot_prompt=normal'
+  line_callback_url: 'https://syukan-meter.com/oauth/callback?provider=line&bot_prompt=aggressive'
