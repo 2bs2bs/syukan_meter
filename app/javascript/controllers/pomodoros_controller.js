@@ -14,6 +14,7 @@ export default class extends Controller {
     this.updateDisplay();
     this.checkTimerStatus();
     this.updateButtonText();
+    console.log('connect')
   }
 
   setTimer(minutes) {
@@ -64,17 +65,20 @@ export default class extends Controller {
 
     if(this.timeValue <= 0){
       clearInterval(this.timerId);
-      this.timeId = null;
+      this.timerId = null;
       alert('Time is up!');
       this.mode = this.mode === "work" ? "break" : "work";
       this.setTimer(this.mode === "work" ? WORK_DURATION : BREAK_DURATION);
-      if(this.mode === "work"){
+      if(this.mode === "break"){
         this.createPomodoro();
       }
     }
   }
 
   createPomodoro(){
+    console.log('pomodoro create');
+    this.updatePomodoroCount();
+
     const endTime = new Date().toISOString();
 
     fetch('/pomodoros',{
@@ -93,10 +97,15 @@ export default class extends Controller {
   }
 
   pause() {
-    clearInterval(this.timerId);
-    this.timerId = null;
-    sessionStorage.setItem('timeValue', this.timeValue.toString());
-    this.saveToSession();
+    console.log('pause')
+    console.log(this.timerId)
+    if (this.timerId){
+      clearInterval(this.timerId);
+      this.timerId = null;
+      sessionStorage.setItem('timeValue', this.timeValue.toString());
+      this.saveToSession();
+      console.log('Timer paused');
+    }
   }
 
   reset() {
@@ -141,14 +150,30 @@ export default class extends Controller {
       this.timeValue = Math.max(this.initialTimeValue - elapsedTime, 0);
 
       // タイマーが0になっていなければ、タイマーを再開する
-      if(this.timeValue > 0){
+      if(this.timeValue > 0 && !this.timerId){
         this.start();
       }
     }
   }
 
   saveToSession() {
-    sessionStorage.setItem('timeValue', this.timeValue);
+    sessionStorage.setItem('timeValue', this.timeValue.toString());
     sessionStorage.setItem('mode', this.mode);
+    sessionStorage.setItem('startTime', this.startTime.toString());
+  }
+
+  // 今日タイマー完了が一回目ならモーダル表示を行う
+  updatePomodoroCount() {
+    const today = new Date().toLocaleDateString();
+    const pomodoroCount = localStorage.getItem(today) || 0;
+    console.log(pomodoroCount);
+
+    if (pomodoroCount == 0) {
+      showModal();
+      console.log("モーダル表示");
+    }
+  
+    // 当日の呼び出し回数を更新
+    localStorage.setItem(today, parseInt(pomodoroCount) + 1);
   }
 }
