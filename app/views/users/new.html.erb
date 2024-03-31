@@ -24,4 +24,11 @@
         <%= f.submit class: "w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 roundedfocus:outline-none focus:shadow-outline" %>
       </div>
   <% end %>
+  <div class="w-full text-center mt-6">
+    <p class="strong">LINEログインすれば簡単に登録できます！！</p> 
+  </div>
+
+  <%= link_to auth_at_provider_path(provider: :line), class: "inline-block w-48 h-12 bg-no-repeat bg-center w-full", style: "background-image: url(#{asset_path('btn_login_base.png')});" do %>
+    <div class="hover:bg-[url(#{asset_path('btn_login_hover.png')})] active:bg-[url(#{asset_path('btn_login_press.png')})]"></div>
+  <% end %>
 </div>

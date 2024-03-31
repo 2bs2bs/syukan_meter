@@ -11,11 +11,13 @@
     <%= render 'habits/form', habit: Habit.new %>
   </div>
 
-  <div class="flex flex-col items-end">
-    <p class="mb-2 text-sm text-gray-600">LINE友だち追加で習慣の時間を通知する</p>
-    <div class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL"   data-lineId="@451lqcsn" style="display: none;"></div>
-    <script src="www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-  </div>
+  <% if current_user.authentications.blank? %>
+    <div class="flex flex-col items-end">
+      <p class="mb-2 text-sm text-gray-600"><%= link_to '友だち追加', "https://lin.ee/DNd32Ai", class: "text-blue-500" %>で習慣の時間を通知する</p>
+      <div class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL"   data-lineId="@451lqcsn" style="display: none;"></div>
+      <script src="www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+    </div>
+  <% end %>
 
   <% if @habits.present? %>
     <%= render @habits %>
