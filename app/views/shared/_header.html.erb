@@ -3,7 +3,7 @@
     <!-- Home Link -->
     <div>
       <%= link_to home_path do %>
-        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
         </svg>
       <% end %>
@@ -11,16 +11,22 @@
     
 
     <!-- Navigation Links -->
-    <nav class="flex items-center space-x-4">
+    <nav class="flex items-center space-x-4 mr-2">
       <%= link_to t('header.post'), posts_path, class: "hover:underline text-white" %>
       <%= link_to t('header.pomodoro'), pomodoros_path, class: "hover:underline text-white" %>
       <%= link_to t('header.habit'), habits_path, class: "hover:underline text-white" %>
       <%= link_to t('header.calendar'), calendars_path, class: "hover:underline text-white" %>
-      <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "hover:underline text-white" %>
-      <div class="flex items-center">
-        <%= link_to user_path(current_user) do %>
+      <div class="relative">
+        <div id="avatar" class="cursor-pointer">
           <%= image_tag (current_user.profile&.avatar.present? ? current_user.profile.avatar.url : asset_path("sample_avatar.png")), class: "rounded-full h-8 w-8" %>
-        <% end %>
+        </div>
+      </div>
+
+      <!-- Dropdown list -->
+      <div id="navbar" class="hidden absolute right-0 bg-indigo-400 top-16 rounded-bl rounded-br">
+        <%= link_to t('header.edit_profile'), edit_profile_path, class: "block hover:underline text-white p-2" %>
+        <%= link_to t('header.edit_email'), edit_user_path(current_user.id), class: "block hover:underline text-white p-2" %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block hover:underline text-white p-2" %>
       </div>
     </nav>
   </div>

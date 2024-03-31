@@ -1,13 +1,12 @@
 class HabitsController < ApplicationController
   before_action :require_login
+  before_action :set_habit, only: [:show, :edit, :update, :destroy]
 
   def index
     @habits = current_user.habits.order(created_at: :desc)
   end
 
-  def show
-    @habit = current_user.habits.find(params[:id])
-  end
+  def show; end
 
   def new
     @habit = current_user.habits.new
@@ -15,21 +14,18 @@ class HabitsController < ApplicationController
 
   def create
     @habit = current_user.habits.build(habit_params)
-
+    
     if @habit.save
-      redirect_to habits_path, success: t('.success')
+      modal_option = current_user.authentications.present? ? {} : { modal: 'show' }
+      redirect_to habits_path(modal_option), success: t('.success')
     else
       redirect_to habits_path, danger: t('.failure')
     end
   end
 
-  def edit
-    @habit = current_user.habits.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @habit = current_user.habits.find(params[:id])
-
     if @habit.update(habit_params)
       redirect_to habits_path, success: t('.success')
     else
@@ -39,7 +35,6 @@ class HabitsController < ApplicationController
   end
 
   def destroy
-    @habit = current_user.habits.find(params[:id])
     @habit.destroy
     redirect_to habits_path, success: t('.success')
   end
@@ -48,5 +43,9 @@ class HabitsController < ApplicationController
 
   def habit_params
     params.require(:habit).permit(:name, :description, :start_date, :end_date, :notification_time)
+  end
+
+  def set_habit
+    @habit = current_user.habits.find(params[:id])
   end
 end
