@@ -17,7 +17,7 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.build(habit_params)
 
     if @habit.save
-      redirect_to habits_path, success: t('.success')
+      redirect_to habits_path(modal: 'show'), success: t('.success')
     else
       redirect_to habits_path, danger: t('.failure')
     end

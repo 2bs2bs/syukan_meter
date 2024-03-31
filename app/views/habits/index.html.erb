@@ -25,6 +25,28 @@
     </div>
   <% end %>
 
+  <!-- modal wind -->
+  <div id="modal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+  <!-- モーダル中央表示 -->
+    <div class="flex items-center justify-center min-h-screen">
+      <!-- モーダルコンテンツ -->
+      <div class="bg-gray-100 rounded-lg shadow-xl transform transition-all sm:max-w-lg sm:w-full p-4">
+        <div class="flex justify-between items-center">
+            <h2 class="text-xl font-medium text-gray-900 text-center flex-grow">LINE友だち追加</h2>
+            <!-- 閉じるボタン -->
+          <div id="closeModal" class="cursor-pointer">✖️</div>
+        </div>
+        <div class="mt-2 text-center">
+          <p>LINE通知を受け取るには</p>
+          <p>公式アカウントの友達追加をおねがいします！</p>
+        </div>
+        <div class="mt-4 text-center">
+          <%= link_to '友だち追加', "https://lin.ee/DNd32Ai", target: "_blank", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('turbo:load', () => {
       const openModalButton = document.getElementById('open-modal-button');
@@ -35,5 +57,19 @@
         openModalButton.classList.add('hidden');
       });
     });  
+
+    document.addEventListener('turbo:load', function() {
+      const modal = document.getElementById('modal');
+      const closeModal = document.getElementById('closeModal');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('modal') === 'show') {
+        modal.classList.remove('hidden');
+      }
+
+      closeModal.addEventListener('click', function() {
+        modal.classList.add('hidden');
+      });
+    });
   </script>
 </div>
