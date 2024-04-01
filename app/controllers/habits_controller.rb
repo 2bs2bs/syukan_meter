@@ -51,3 +51,4 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.find(params[:id])
   end
 end
+
