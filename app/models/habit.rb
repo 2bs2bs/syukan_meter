@@ -14,10 +14,12 @@ class Habit < ApplicationRecord
   validates :description, length: { maximum: 1000 }
   validates :start_date, presence: true
   validates :end_date, presence: true
-
   validate :start_date_cannot_be_in_the_past, on: :create
   validate :end_date_cannot_be_in_the_start_date
   validate :start_date_cannot_be_before_creation, on: :update
+
+  scope :current, -> { where('start_date <= ? AND end_date >= ?', Date.today, Date.today) }
+  scope :past, -> { where('end_date < ?', Date.today ) }
 
   def active_on?(date)
     start_date <= date && date <= end_date

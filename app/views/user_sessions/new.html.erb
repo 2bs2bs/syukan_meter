@@ -3,6 +3,14 @@
 <div class="container mx-auto mt-8 p-8 bg-white max-w-md rounded-lg shadow-md">
 
   <h1 class="text-2xl font-semibold text-center mb-6"><%= t('.title') %></h1>
+
+  <h2 class="text-xl flex justify-center mb-2">LINEログイン</h2>
+  <%= link_to auth_at_provider_path(provider: :line), class: "inline-block w-48 h-12 bg-no-repeat bg-center w-full", style: "background-image: url(#{asset_path('btn_login_base.png')});" do %>
+    <div class="hover:bg-[url(#{asset_path('btn_login_hover.png')})] active:bg-[url(#{asset_path('btn_login_press.png')})]"></div>
+  <% end %>
+
+  <hr class="my-8">
+
   <%= form_with url: login_path, method: :post do |f| %>
     <div class="mb-2">
       <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
@@ -18,15 +26,6 @@
     <p class="text-center text-sm ">
       <%= link_to t('.password_forget'), new_password_reset_path, class: "text-indigo-500 hover:underline" %>
     </p>
-  <% end %>
-  
-  <div class="w-full text-center mt-6">
-    <p class="strong">LINE通知を受け取るにはLINEログインと</p>
-    <p>公式アカウントの友だち追加をしてください!!</p>  
-  </div>
-
-  <%= link_to auth_at_provider_path(provider: :line), class: "inline-block w-48 h-12 bg-no-repeat bg-center w-full", style: "background-image: url(#{asset_path('btn_login_base.png')});" do %>
-    <div class="hover:bg-[url(#{asset_path('btn_login_hover.png')})] active:bg-[url(#{asset_path('btn_login_press.png')})]"></div>
   <% end %>
 
 </div>

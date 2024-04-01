@@ -14,13 +14,17 @@
   <% if current_user.authentications.blank? %>
     <div class="flex flex-col items-end">
       <p class="mb-2 text-sm text-gray-600"><%= link_to '友だち追加', "https://lin.ee/DNd32Ai", class: "text-blue-500" %>で習慣の時間を通知する</p>
-      <div class="line-it-button" data-lang="ja" data-type="friend" data-env="REAL"   data-lineId="@451lqcsn" style="display: none;"></div>
-      <script src="www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     </div>
   <% end %>
 
   <% if @habits.present? %>
-    <%= render @habits %>
+  <div class="tabs flex justify-center space-x-2">
+    <button class="tab-button py-2 px-4 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2" onclick="showHabits('current')">進行中</button>
+    <button class="tab-button py-2 px-4 bg-gray-200 text-blue-500 font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2" onclick="showHabits('past')">過去</button>
+  </div>
+
+    <%= render 'habits', habits: @current_habits, empty_message: '現在進行中の習慣がありません。' %>
+    <%= render 'habits', habits: @past_habits, empty_message: '過去の習慣がありません。' %>
   <% else %>
     <div class="bg-white rounded-lg p-4 mt-4 mb-4 shadow-md flex items-center justify-center">
       <p class="text-gray-500 mb-4">習慣がありません！作成しましょう！</p>
@@ -48,30 +52,57 @@
       </div>
     </div>
   </div>
-
-  <script>
-    document.addEventListener('turbo:load', () => {
-      const openModalButton = document.getElementById('open-modal-button');
-      const modal = document.getElementById('new-habit-modal');
-    
-      openModalButton.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        openModalButton.classList.add('hidden');
-      });
-    });  
-
-    document.addEventListener('turbo:load', function() {
-      const modal = document.getElementById('modal');
-      const closeModal = document.getElementById('closeModal');
-
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('modal') === 'show') {
-        modal.classList.remove('hidden');
-      }
-
-      closeModal.addEventListener('click', function() {
-        modal.classList.add('hidden');
-      });
-    });
-  </script>
 </div>
+
+<script>
+  document.addEventListener('turbo:load', () => {
+    const openModalButton = document.getElementById('open-modal-button');
+    const modal = document.getElementById('new-habit-modal');
+  
+    openModalButton.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      openModalButton.classList.add('hidden');
+    });
+  });  
+  document.addEventListener('turbo:load', function() {
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('modal') === 'show') {
+      modal.classList.remove('hidden');
+    }
+    closeModal.addEventListener('click', function() {
+      modal.classList.add('hidden');
+    });
+  });
+  function showHabits(tabName) {
+    // すべてのタブのスタイルをリセット
+    var tabs = document.querySelectorAll('.tab-button');
+    tabs.forEach(function(tab) {
+    if (tab.getAttribute('onclick').includes('current')) {
+      // 進行中タブを元のスタイルに
+      tab.classList.remove('bg-blue-500', 'text-white');
+      tab.classList.add('bg-gray-200', 'text-blue-500');
+    } else if (tab.getAttribute('onclick').includes('past')) {
+      // 過去タブを元のスタイルに
+      tab.classList.remove('bg-blue-500', 'text-white');
+      tab.classList.add('bg-gray-200', 'text-blue-500');
+    }
+  });
+  // アクティブなタブにスタイルを適用
+  var activeTab = document.querySelector('.tab-button[onclick="showHabits(\'' + tabName + '\')"]');
+  activeTab.classList.remove('bg-white', 'bg-gray-200', 'text-blue-500');
+  activeTab.classList.add('bg-blue-500', 'text-white');
+  // すべてのhabits-containerを非表示にする
+  var containers = document.querySelectorAll('.habits-container');
+  containers.forEach(function(container) {
+    container.style.display = 'none';
+  });
+    // 選択されたタブのコンテンツを表示
+    document.getElementById(tabName + '-habits').style.display = 'block';
+  }
+  // ページロード時に期間内のHabitsを表示
+  document.addEventListener('turbo:load', function() {
+    showHabits('current');
+  });
+</script>
