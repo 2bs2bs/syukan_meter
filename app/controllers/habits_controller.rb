@@ -3,7 +3,9 @@ class HabitsController < ApplicationController
   before_action :set_habit, only: [:show, :edit, :update, :destroy]
 
   def index
-    @habits = current_user.habits.order(created_at: :desc)
+    @habits = current_user.habits
+    @current_habits = current_user.habits.current.order(created_at: :desc)
+    @past_habits = current_user.habits.past.order(created_at: :desc)
   end
 
   def show; end
