@@ -11,5 +11,3 @@ document.addEventListener('turbo:load', () => {
     navbar.classList.toggle('hidden');
   });
 });
-
-import "./toggle_user_new_form"
