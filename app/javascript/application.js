@@ -6,7 +6,7 @@ import "./toggle_user_new_form"
 // headerのnavber
 document.addEventListener('turbo:load', () => {
   const avatar = document.getElementById('avatar');
-  const navber = document.getElementById('navbar');
+  const navbar = document.getElementById('navbar');
 
   avatar.addEventListener('click', () => {
     navbar.classList.toggle('hidden');
