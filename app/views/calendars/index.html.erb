@@ -1,26 +1,27 @@
 <%= content_for(:title, t('.title')) %>
 <div class="mb-6">
-  <p class="mb-2">習慣を作成したらカレンダーに表示されます！習慣を作成しましょう！<%= link_to "こちら", habits_path, class: "inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 text-sm mx-2 my-1" %></p>
+  <p class="mb-4 text-lg">習慣を作成したらカレンダーに表示されます！習慣を作成しましょう！<%= link_to "こちら", habits_path, class: "inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 text-sm mx-2 my-1" %></p>
 
-  <p class="mb-2">ポモドーロタイマーの回数も記録できます！<%= link_to "タイマーへ", pomodoros_path, class: "inline-block bg-green-500 text-white font-semibold py-2 px-3 rounded hover:bg-green-700 text-sm mx-2 my-1" %></p>
+  <p class="mb-4 text-lg">ポモドーロタイマーの回数も記録できます！<%= link_to "タイマーへ", pomodoros_path, class: "inline-block bg-green-500 text-white font-semibold py-2 px-3 rounded hover:bg-green-700 text-sm mx-2 my-1" %></p>
 
-  <p>習慣をできたらクリックで達成にしましょう！その日しかできないので注意してください！:)</p>
+  <p class="text-lg">習慣をできたらクリックで達成にしましょう！その日しかできないので注意してください！:)</p>
 </div>
-
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date, header: true, class: "grid grid-cols-7 gap-4") do |date| %>
-  <div class="flex items-center justify-center h-8 w-8 rounded-full">
-    <%= date.strftime('%-d') %>
-  </div>
-  <% @habits.each do |habit| %>
-    <% if habit.start_date <= date && date <= habit.end_date %>
-      <div class="mt-2 p-2 rounded-md bg-blue-200 text-blue-800">
-        <%= habit_display(habit, date) %>
+<div class="bg-white p-8 rounded-lg shadow-xl overflow-auto">
+  <%= month_calendar(attribute: :start_date, end_attribute: :end_date, header: true, class: "grid grid-cols-7 gap-4") do |date| %>
+    <div class="flex items-center justify-center h-10 w-10 text-sm">
+      <%= date.strftime('%-d') %>
+    </div>
+    <% @habits.each do |habit| %>
+      <% if habit.start_date <= date && date <= habit.end_date %>
+        <div class="mt-2 p-2 rounded-md bg-blue-200 text-blue-800 text-base">
+          <%= habit_display(habit, date) %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @pomodoros_by_day[date] %>
+      <div class="mt-2 p-2 rounded-md bg-green-200 text-green-800 text-xs">
+        ポモドーロ数: <%= @pomodoros_by_day[date] %>回
       </div>
     <% end %>
   <% end %>
-  <% if @pomodoros_by_day[date] %>
-    <div class="mt-2 p-2 rouded-md bg-green-200 text-green-800">
-      ポモドーロ数: <%= @pomodoros_by_day[date] %>回
-    </div>
-  <% end %>
-<% end %>
+</div>

@@ -1,34 +1,43 @@
 <div class="container mx-auto mt-8 p-8 bg-white max-w-md rounded-lg shadow-md">
   <h1 class="text-2xl font-semibold text-center mb-6"><%= t('.title') %></h1>
-  <%= form_with model: @user do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= f.fields_for :profile do |profile_form| %>
-      <div class="mb-4">
-      <%= profile_form.label :user_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-          <%= profile_form.text_field :user_name, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
-      <% end %>
-      </div>
-      <div class="mb-4">
-        <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.email_field :email, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
-      </div>
-      <div class="mb-4">
-        <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.password_field :password, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
-      </div>
-      <div class="mb-6">
-        <%= f.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.password_field :password_confirmation, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
-      </div>
-      <div class="mb-6">
-        <%= f.submit class: "w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 roundedfocus:outline-none focus:shadow-outline" %>
-      </div>
-  <% end %>
-  <div class="w-full text-center mt-6">
-    <p class="strong">LINEログインすれば簡単に登録できます！！</p> 
+  <div id="email-form" class="hidden">
+    <%= form_with model: @user do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.fields_for :profile do |profile_form| %>
+        <div class="mb-4">
+        <%= profile_form.label :user_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= profile_form.text_field :user_name, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
+        <% end %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.email_field :email, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
+        </div>
+        <div class="mb-4">
+          <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.password_field :password, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
+        </div>
+        <div class="mb-6">
+          <%= f.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.password_field :password_confirmation, class: "w-full px-3 py-2 leading-tight border rounded-md focus:outline-nonefocus:shadow-outline" %>
+        </div>
+        <div class="mb-6">
+          <%= f.submit class: "w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 roundedfocus:outline-none focus:shadow-outline" %>
+        </div>
+    <% end %>
   </div>
 
-  <%= link_to auth_at_provider_path(provider: :line), class: "inline-block w-48 h-12 bg-no-repeat bg-center w-full", style: "background-image: url(#{asset_path('btn_login_base.png')});" do %>
+  <div class="w-full text-center mt-6" id="line-login">
+    <p>LINEログインで簡単に登録！</p>
+    <p class="mt-2">習慣リマインダーをLINEでお知らせします！</p>
+    <p class="mt-2">友だち追加も忘れずにチェックしてね✔</p>
+    
+    <%= link_to auth_at_provider_path(provider: :line), class: "inline-block w-48 h-12 bg-no-repeat bg-center w-full mt-4", style: "background-image: url(#{asset_path('btn_login_base.png')});" do %>
     <div class="hover:bg-[url(#{asset_path('btn_login_hover.png')})] active:bg-[url(#{asset_path('btn_login_press.png')})]"></div>
-  <% end %>
+    <% end %>
+  </div>
+  
+  <div class="w-full text-center mt-6">
+    <%= link_to 'emailでの登録はこちら', '#', id: 'toggle-link', class: 'text-blue-500' %>
+  </div>
 </div>
