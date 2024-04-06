@@ -24,6 +24,7 @@
 
       <!-- Dropdown list -->
       <div id="navbar" class="hidden absolute right-0 bg-indigo-400 top-16 rounded-bl rounded-br">
+        <%= link_to t('header.profile'), user_path(current_user), class: "block hover:underline text-white p-2" %>
         <%= link_to t('header.edit_profile'), edit_profile_path, class: "block hover:underline text-white p-2" %>
         <%= link_to t('header.edit_email'), edit_user_path(current_user.id), class: "block hover:underline text-white p-2" %>
         <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block hover:underline text-white p-2" %>

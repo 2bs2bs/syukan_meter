@@ -8,12 +8,12 @@
   <%= render 'post', post: @post %>
 
   <div class="flex justify-center mb-4">
-    <button id="open-comment-modal-button" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">コメントする</button>
+    <button id="open-modal-button" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">コメントする</button>
   </div>
 
   <!-- Comment Section Modal -->
   <% if logged_in? %>
-    <div class="modal hidden" id="new-comment-modal">
+    <div class="modal hidden" id="new-modal">
         <%= render 'comments/form', comment: @comment, post: @post %>
     </div>
   <% end %>
@@ -29,16 +29,4 @@
       </tbody>
     </table>
   </div>
-
-  <script>
-    document.addEventListener('turbo:load', () => {
-      const openModalButton = document.getElementById('open-comment-modal-button');
-      const modal = document.getElementById('new-comment-modal');
-
-      openModalButton.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        openModalButton.classList.add('hidden');
-      });
-    });
-  </script>
 </div>
