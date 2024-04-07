@@ -22,18 +22,18 @@
 
 |習慣作成|習慣一覧|
 |:-:|:-:|
-|image|image|
+|[![Image from Gyazo](https://i.gyazo.com/11630c6ca21a8a37100b80e1cb065566.png)](https://gyazo.com/11630c6ca21a8a37100b80e1cb065566)|[![Image from Gyazo](https://i.gyazo.com/5270c85dbc78b422ef2693f76d861a0a.gif)](https://gyazo.com/5270c85dbc78b422ef2693f76d861a0a)|
 |作成フォームをモーダル表示にすることで無駄な遷移なく入力できるようにしています。|作成した習慣が表示されます。期間内と期間外に分けることで現在何を習慣にしているかわかりやすいようにしています。|
 
 |ポモドーロタイマー機能|習慣通知機能|
 |:-:|:-:|
-|image|image|
+|[![Image from Gyazo](https://i.gyazo.com/a745f6f96eb679143f1938960f34bb4a.png)](https://gyazo.com/a745f6f96eb679143f1938960f34bb4a)|[![Image from Gyazo](https://i.gyazo.com/0033934afe21e6cf94f82ea5ae30a83b.jpg)](https://gyazo.com/0033934afe21e6cf94f82ea5ae30a83b)|
 |25分と5分を繰り返すタイマーです。別ページに遷移してもリセットされないようにしました。25分タイマーが終了した際にポップアップすることで投稿促しています。またカレンダーに記録されるようになっています。|習慣の日付が範囲内なら設定した通知時間にLINEプッシュ通知を行います。|
 
 
 |投稿機能|カレンダー機能|
 |:-:|:-:|
-|image|image|
+|[![Image from Gyazo](https://i.gyazo.com/5296c1f11f526aa5a9a1641cd5bf7d45.gif)](https://gyazo.com/5296c1f11f526aa5a9a1641cd5bf7d45)|[![Image from Gyazo](https://i.gyazo.com/a26f5d0fc0360b004690f51bc673b1b3.png)](https://gyazo.com/a26f5d0fc0360b004690f51bc673b1b3)|
 |いいね機能と詳細からは投稿に対しコメント機能を設け、交流を促すことでモチベーション維持を促しています|作成した習慣、進捗、当日行ったポモドーロタイマー回数を記録しています。振り返ることでモチベーション維持を促しています。進捗機能に関しては当日のみ操作できるようにしています。|
 
 
