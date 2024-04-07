@@ -16,7 +16,7 @@
 ## ■ 機能紹介
 |トップ画面|LINEログイン、LINEユーザー作成|
 |:-:|:-:|
-|image|image|
+|[![Image from Gyazo](https://i.gyazo.com/36e0c7d68acbc619ad65de0c0245c973.gif)](https://gyazo.com/36e0c7d68acbc619ad65de0c0245c973)|[![Image from Gyazo](https://i.gyazo.com/0727c23cf48ee67e4d0f2f522eb03b01.gif)](https://gyazo.com/0727c23cf48ee67e4d0f2f522eb03b01)|
 |メイン機能の説明、まずは機能のイメージが分かるようにタイマーページと投稿機能へのリンクを設置しています。|ユーザー登録とログインを楽に行えるようにLINEログインをなるべく目立つように配置しました|
 
 
@@ -27,7 +27,7 @@
 
 |ポモドーロタイマー機能|習慣通知機能|
 |:-:|:-:|
-|[![Image from Gyazo](https://i.gyazo.com/a745f6f96eb679143f1938960f34bb4a.png)](https://gyazo.com/a745f6f96eb679143f1938960f34bb4a)|[![Image from Gyazo](https://i.gyazo.com/0033934afe21e6cf94f82ea5ae30a83b.jpg)](https://gyazo.com/0033934afe21e6cf94f82ea5ae30a83b)|
+|<img src="https://i.gyazo.com/a745f6f96eb679143f1938960f34bb4a.png" width="100%">|<img src="https://i.gyazo.com/0033934afe21e6cf94f82ea5ae30a83b.jpg" width="100%">|
 |25分と5分を繰り返すタイマーです。別ページに遷移してもリセットされないようにしました。25分タイマーが終了した際にポップアップすることで投稿促しています。またカレンダーに記録されるようになっています。|習慣の日付が範囲内なら設定した通知時間にLINEプッシュ通知を行います。|
 
 
