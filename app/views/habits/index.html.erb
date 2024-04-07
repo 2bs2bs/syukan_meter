@@ -66,6 +66,7 @@
       modal.classList.add('hidden');
     });
   });
+
   function showHabits(tabName) {
     // すべてのタブのスタイルをリセット
     var tabs = document.querySelectorAll('.tab-button');
@@ -80,6 +81,7 @@
       tab.classList.add('bg-gray-200', 'text-blue-500');
     }
   });
+
   // アクティブなタブにスタイルを適用
   var activeTab = document.querySelector('.tab-button[onclick="showHabits(\'' + tabName + '\')"]');
   activeTab.classList.remove('bg-white', 'bg-gray-200', 'text-blue-500');
