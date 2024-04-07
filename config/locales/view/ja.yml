@@ -107,4 +107,9 @@ ja:
     profile: プロフィール
     edit_profile: プロフィール編集
     edit_email: メールアドレス変更
-
+  views:
+    pagination: 
+      previous: <
+      next: '>'
+      first: '|<'
+      last: '>|'
