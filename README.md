@@ -22,7 +22,7 @@
 
 |習慣作成|習慣一覧|
 |:-:|:-:|
-|[![Image from Gyazo](https://i.gyazo.com/11630c6ca21a8a37100b80e1cb065566.png)](https://gyazo.com/11630c6ca21a8a37100b80e1cb065566)|[![Image from Gyazo](https://i.gyazo.com/5270c85dbc78b422ef2693f76d861a0a.gif)](https://gyazo.com/5270c85dbc78b422ef2693f76d861a0a)|
+|[![Image from Gyazo](https://i.gyazo.com/e588c49662233f4870fc84cd9067cf95.gif)](https://gyazo.com/e588c49662233f4870fc84cd9067cf95)|[![Image from Gyazo](https://i.gyazo.com/75979aa4bf2dde5aa5d6374006d52a39.gif)](https://gyazo.com/75979aa4bf2dde5aa5d6374006d52a39)|
 |作成フォームをモーダル表示にすることで無駄な遷移なく入力できるようにしています。|作成した習慣が表示されます。期間内と期間外に分けることで現在何を習慣にしているかわかりやすいようにしています。|
 
 |ポモドーロタイマー機能|習慣通知機能|
@@ -33,7 +33,7 @@
 
 |投稿機能|カレンダー機能|
 |:-:|:-:|
-|[![Image from Gyazo](https://i.gyazo.com/5296c1f11f526aa5a9a1641cd5bf7d45.gif)](https://gyazo.com/5296c1f11f526aa5a9a1641cd5bf7d45)|[![Image from Gyazo](https://i.gyazo.com/a26f5d0fc0360b004690f51bc673b1b3.png)](https://gyazo.com/a26f5d0fc0360b004690f51bc673b1b3)|
+|[![Image from Gyazo](https://i.gyazo.com/61ac392915cf1bb42594055b732abfb4.gif)](https://gyazo.com/61ac392915cf1bb42594055b732abfb4)|[![Image from Gyazo](https://i.gyazo.com/9870e75d661715002077c1c865946ebf.gif)](https://gyazo.com/9870e75d661715002077c1c865946ebf)|
 |いいね機能と詳細からは投稿に対しコメント機能を設け、交流を促すことでモチベーション維持を促しています|作成した習慣、進捗、当日行ったポモドーロタイマー回数を記録しています。振り返ることでモチベーション維持を促しています。進捗機能に関しては当日のみ操作できるようにしています。|
 
 
@@ -48,6 +48,7 @@
 |画像保存|AWS(S3)|
 
 ## ■ ER図
+[![Image from Gyazo](https://i.gyazo.com/df58ef9c02a46996ff8dde245b7254b7.png)](https://gyazo.com/df58ef9c02a46996ff8dde245b7254b7)
 
 ### 画面遷移図(README作成時のままです)
 Figma：https://www.figma.com/file/17rbqZ5d37uVrkW0q8JQbZ/Syukan_Maker?type=design&mode=design&t=1LiRTtLKKlfjEjtu-
