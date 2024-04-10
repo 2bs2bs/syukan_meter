@@ -48,7 +48,7 @@
 |画像保存|AWS(S3)|
 
 ## ■ ER図
-[![Image from Gyazo](https://i.gyazo.com/df58ef9c02a46996ff8dde245b7254b7.png)](https://gyazo.com/df58ef9c02a46996ff8dde245b7254b7)
+[![Image from Gyazo](https://i.gyazo.com/cf7bd16bdcdcb6c052f25251d756b1a1.png)](https://gyazo.com/cf7bd16bdcdcb6c052f25251d756b1a1)
 
 ### 画面遷移図(README作成時のままです)
 Figma：https://www.figma.com/file/17rbqZ5d37uVrkW0q8JQbZ/Syukan_Maker?type=design&mode=design&t=1LiRTtLKKlfjEjtu-
