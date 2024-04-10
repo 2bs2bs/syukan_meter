@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-10T06:29:21.600Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="R10-TLUgd8gzN9rQO9Qm" version="24.2.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-10T07:19:33.213Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="b4htpLmstTO_w72q5Ir0" version="24.2.2" type="github">
   <diagram name="ページ1" id="Uh4QbJjiGS2wfg_6cVyE">
     <mxGraphModel dx="858" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -280,7 +280,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="rx3alE4QvPjB7XIUzh8W-69" value="Pomodoros" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry y="200" width="210" height="180" as="geometry" />
+          <mxGeometry x="20" y="215" width="210" height="150" as="geometry" />
         </mxCell>
         <mxCell id="rx3alE4QvPjB7XIUzh8W-70" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="rx3alE4QvPjB7XIUzh8W-69" vertex="1">
           <mxGeometry y="30" width="210" height="30" as="geometry" />
@@ -316,7 +316,7 @@
             <mxRectangle width="30" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rx3alE4QvPjB7XIUzh8W-78" value="start_time(開始時間)(date)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-76" vertex="1">
+        <mxCell id="rx3alE4QvPjB7XIUzh8W-78" value="start_at(開始時間)(date)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-76" vertex="1">
           <mxGeometry x="30" width="180" height="30" as="geometry">
             <mxRectangle width="180" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -329,20 +329,7 @@
             <mxRectangle width="30" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rx3alE4QvPjB7XIUzh8W-81" value="end_time(終了時間)(date)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-79" vertex="1">
-          <mxGeometry x="30" width="180" height="30" as="geometry">
-            <mxRectangle width="180" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rx3alE4QvPjB7XIUzh8W-104" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="rx3alE4QvPjB7XIUzh8W-69" vertex="1">
-          <mxGeometry y="150" width="210" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="rx3alE4QvPjB7XIUzh8W-105" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-104" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rx3alE4QvPjB7XIUzh8W-106" value="duration(集中時間)(integer)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-104" vertex="1">
+        <mxCell id="rx3alE4QvPjB7XIUzh8W-81" value="end_at(終了時間)(date)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="rx3alE4QvPjB7XIUzh8W-79" vertex="1">
           <mxGeometry x="30" width="180" height="30" as="geometry">
             <mxRectangle width="180" height="30" as="alternateBounds" />
           </mxGeometry>
