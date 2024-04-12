@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
 
   get 'home' => 'home#index', :as => :home
+  get 'kiyaku' => 'home#kiyaku', :as => :kiyaku
 
   resources :users
   resource :profile, only: %i[edit update]
